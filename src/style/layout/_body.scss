@@ -1,0 +1,142 @@
+@import '../utils/mixins';
+@import '../utils/variables';
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  h1{
+    color:$third-color;
+  }
+  p{
+    color:$secondary-color
+  }
+
+  .main{
+    width:100%;
+    height:635px;
+    margin:0;
+    padding:0!important;
+    &__logo{
+        width:80px;
+        height:80px;
+        border: $secondary-color 1px solid;
+        border-radius:50%;
+        box-shadow: rgba(56, 59, 63, 0.7) 1px 8px 24px;
+
+        &--card{
+            width:80px;
+            height:80px;
+        }
+    }
+
+    &__img{
+        filter:blur(4px);
+        height:641px;
+        z-index: 1;
+        width:100%;
+    }
+    &__banner{
+        background-color:$third-color;
+        height:300px;
+        z-index:2;
+        transform:translateY(-470px);
+        filter:blur(-4px)
+    }
+    aside{
+        display:flex;
+        flex-direction:row;
+        background-color:rgb(209, 208, 208);
+        margin-top:50px;
+        border-radius:10px;
+        box-shadow: rgba(56, 59, 63, 0.7) 1px 8px 24px;
+        padding:0!important;
+
+        .btn{
+            background-color:$secondary-color
+        }
+        p{
+            color:black;
+            border-bottom:$secondary-color 3px solid;
+            margin-bottom:25px;
+        }
+        img{
+            width:220px;
+            height:200px;
+            border-radius:10px;
+            padding:5px;
+        }
+        h4{
+            margin-top:15px;
+            margin-bottom:50px;
+        }
+        span{
+            background-color:$secondary-color;
+        }
+    }
+    
+}
+
+@media (max-width: 992px) {
+  .main__banner{
+    width:80%;
+    height:fit-content;
+    margin:auto;
+    transform:translateY(-683px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+  }
+  .main{
+    margin:auto;
+    &__logo--card{
+      display:none;
+    }
+  }
+  aside{
+    transform:scale(0.8);
+    img{
+      width:100%;
+      height:100%;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .main{
+    margin:auto;
+    &__logo--card{
+      display:none;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .main{
+    aside{
+      img{
+        width:140px;
+        height:140px;
+      }
+    }
+  }
+  nav{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    button{
+      margin-top:15px;
+      margin-bottom:10px;
+    }
+  }
+}
