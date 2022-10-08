@@ -4,6 +4,7 @@ import Signin from './pages/Login'
 import Nav from './pages/Header'
 import Signup from './pages/Signup'
 import Homepage from './pages/Homepage'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/homepage' element={<Homepage/>}/>
+        <Route path='/homepage/profile' element={<Profile/>}/>
       </Routes>
     </Router>
     </>

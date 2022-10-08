@@ -35,7 +35,7 @@ function Signup() {
             <input type="password" placeholder="6 caractères minimum dont une lettre et un nombre" className="form-control" id="exampleInputPassword1"/>
         </div>
         <Link to="/homepage">
-        <button type="submit" className=" w-50 m-auto connexion__button">Inscription</button>
+        <button type="submit" className="d-flex justify-content-center w-50 m-auto connexion__button">Inscription</button>
         </Link>
     </form>
 </main>

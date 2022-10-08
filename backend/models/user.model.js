@@ -34,6 +34,11 @@ const userSchema = mongoose.Schema({
     bio :{
         type:String,
         maxLength:580
+    },
+    post:{
+        type:[String],
+        mxLength:1024,
+        minLength:2,
     }
 },{
     timestamps:true,
