@@ -1,23 +1,42 @@
 import {Link} from 'react-router-dom';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import profilePic from '../style/ressources/new.webp'
+import thinHeart from '../style/ressources/thinheart.png'
 
 function Homepage() {
     return (
-<main className="homepage container-fluid">
-    <div className="homepage__post container">
-        <aside className="">
-            <Link to="profile">
-            <img className="homepage__profile" src="https://i.pinimg.com/originals/39/e9/b3/39e9b39628e745a39f900dc14ee4d9a7.jpg"></img>
-            </Link>
-            <input height="125px" type="text" placeholder="Quoi de neuf ?" className="hompepage__text rounded-3"/>
-            <div className="homepage__select row justify-content-between d-flex">
-                <div className="homepage__addfiles bg-light rounded-3">Ajouter une image</div>
-                <div className="homepage__send bg-light rounded-3">Envoyer</div>
+<main className="homepage container-fluid pt-3">
+        <aside className="container d-flex rounded-2">
+            <div className="col-2 homepage__profile d-flex mt-4">
+                <img src={profilePic} className="homepage__profile--pic" alt="portrait individuel"></img>
+                <p>Nom utilisateur</p>
             </div>
-        </aside>
-    </div>
-    
-
+            <div className="col-10 homepage__textarea d-flex mt-4">
+                <textarea placeholder="Quoi de neuf ?" className="rounded-2"></textarea>
+                <div className="homepage__button d-flex offset-6 mt-4 mb-4">
+                    <button>Ajouter photo</button>
+                    <button>Envoyer</button>
+                </div>                
+            </div>
+        </aside>    
+        <div className="homepage__border col-12 container"></div>
+        <h4 className="container">Dernières publications</h4>
+        <aside className="container d-flex rounded-2">
+            <div className="col-2 homepage__profile d-flex mt-4">
+                <img src={profilePic} className="homepage__profile--pic" alt="portrait individuel"></img>
+                <p>Nom utilisateur</p>
+                <div className="homepage__update d-flex">
+                    <button className="mt-2">Modifier</button>
+                    <button className="mt-2">Supprimer</button>
+                </div>   
+            </div>
+            <div className="col-10 homepage__textarea d-flex mt-4">
+                <div className="rounded-2 bg-light p-2">Exemple de post concret sur l'affichage. Lorem ipsum dolor sit amet consectetur adipisicing elit. In nobis natus rerum! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident adipisci nobis officiis quod ratione soluta! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores molestias minus, velit eum nobis cum veniam maiores dolores, nulla facere aut doloribus at veritatis ipsam rem, ullam dignissimos magni praesentium nihil sit?</div>
+                <div className="homepage__icon">
+                    <img src={thinHeart} alt="coeur"></img>
+                </div>
+            </div>
+        </aside>  
 </main>
     );
   }

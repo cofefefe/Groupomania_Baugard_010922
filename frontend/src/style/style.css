@@ -11803,9 +11803,13 @@ p {
   color: #FFD7D7;
 }
 
+main {
+  height: 821px;
+}
+
 .main {
   width: 100%;
-  max-height: 820px;
+  height: 100%;
   margin: 0;
   padding: 0 !important;
 }
@@ -11825,10 +11829,16 @@ p {
   width: 60%;
   transform: translateY(-750px);
 }
+.main__cards ::before {
+  box-sizing: unset;
+}
+.main__cards ::after {
+  box-sizing: unset;
+}
 .main__img {
   filter: blur(4px);
   z-index: 1;
-  height: 800px;
+  height: max-content;
 }
 .main__banner {
   background-color: #4E5166;
@@ -11940,48 +11950,57 @@ p {
 }
 .homepage {
   background-color: #4E5166;
-  padding: 0;
-  margin: 0;
-  height: 820px;
 }
 .homepage aside {
-  transform: translateY(10px);
-  background-color: #8386a3;
-}
-.homepage__post {
-  background-color: #707491;
-  height: 820px;
+  background-color: rgb(179, 177, 177);
 }
 .homepage__profile {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin: 15px 0 10px 15px;
-  transform: translateY(-40px);
-}
-.homepage input {
-  width: 85%;
-  border: none;
-  margin-left: 50px;
-  height: 125px;
-  margin-top: 10px;
-  text-align: start;
-}
-.homepage__addfiles {
-  width: 15%;
-  text-align: center;
-  padding: 5px;
-  margin: 10px 0 10px 135px;
-}
-.homepage__send {
-  width: 15%;
-  text-align: center;
-  padding: 5px;
-  height: 34px;
-  margin-right: 60px;
-}
-.homepage__select {
   align-items: center;
+  flex-direction: column;
+}
+.homepage__profile--pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.homepage__textarea {
+  flex-direction: column;
+}
+.homepage textarea {
+  height: 125px;
+}
+.homepage__button {
+  flex-direction: row;
+  align-self: flex-end;
+}
+.homepage button {
+  border: none;
+  margin-left: 15px;
+  background-color: #FFD7D7;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 100ms ease;
+}
+.homepage button:hover {
+  background-color: #ddbcbc;
+}
+.homepage__border {
+  border: 1px #FFD7D7 solid;
+  margin-top: 10px;
+}
+.homepage h4, .homepage .h4 {
+  color: #FFD7D7;
+}
+.homepage__update {
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.homepage__update button {
+  margin-left: 0px;
+}
+.homepage__icon img {
+  width: 30px;
+  height: 30px;
 }
 
 .header {

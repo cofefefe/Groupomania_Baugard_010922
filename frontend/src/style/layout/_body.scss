@@ -182,60 +182,57 @@ main{
 
 .homepage{
   background-color:$third-color;
-  padding:0;
-  margin:0;
-  height:820px;
   aside{
-    transform: translateY(10px);
-    background-color:#8386a3;
-  }
-  &__post{
-    background-color:#707491;
-    height:820px;
+    background-color:rgb(179, 177, 177);
   }
   &__profile{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    margin:15px 0 10px 15px;
-    transform:translateY(-40px);
-    &::after{
-      background-color:yellow;
-      width:800px;
-      height:500px;
+    align-items:center;
+    flex-direction:column;
+    &--pic{
+      width:80px;
+      height:80px;
+      border-radius:50%;
     }
   }
-  input{
-    width:85%;
-    border:none;
-    margin-left:50px;
+  &__textarea{
+    flex-direction:column;
+  }
+  textarea{
     height:125px;
-    margin-top:10px;
-    text-align:start
   }
-  &__addfiles{
-    width:15%;
-    text-align:center;
+  &__button{
+    flex-direction:row;
+    align-self:flex-end;
+  }
+  button{
+    border:none;
+    margin-left:15px;
+    background-color:$secondary-color;
     padding:5px;
-    margin:10px 0 10px 135px;
+    border-radius:10px;
+    transition:100ms ease;
+    &:hover{
+      background-color:#ddbcbc;
+    }
   }
-  &__send{
-    width:15%;
-    text-align:center;
-    padding:5px;
-    height:34px;
-    margin-right:60px;
+ &__border{
+  border:1px $secondary-color solid;
+  margin-top:10px;
+ }
+ h4{
+  color:$secondary-color
+ }
+ &__update{
+  flex-direction:column;
+  margin-bottom:10px;
+  button{
+    margin-left:0px;
   }
-  &__select{
-    align-items:center;
-  }
-}
-
-.profile__homepage{
-
+ }
+ &__icon{
   img{
-    width:120px;
-    height:110px;
-    border-radius:50%;
+    width:30px;
+    height:30px;
   }
+ }
 }
