@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import profilePic from '../style/ressources/new.webp'
 import thinHeart from '../style/ressources/thinheart.png'
+import share from '../style/ressources/share.png'
 
 function Homepage() {
     return (
@@ -32,8 +33,12 @@ function Homepage() {
             </div>
             <div className="col-10 homepage__textarea d-flex mt-4">
                 <div className="rounded-2 bg-light p-2">Exemple de post concret sur l'affichage. Lorem ipsum dolor sit amet consectetur adipisicing elit. In nobis natus rerum! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident adipisci nobis officiis quod ratione soluta! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores molestias minus, velit eum nobis cum veniam maiores dolores, nulla facere aut doloribus at veritatis ipsam rem, ullam dignissimos magni praesentium nihil sit?</div>
-                <div className="homepage__icon">
-                    <img src={thinHeart} alt="coeur"></img>
+                <div className="homepage__icon mt-2 p-2 justify-content-between d-flex">
+                    <div>Il y à x minutes</div>
+                    <div className="sharelike">
+                        <img src={share} alt="icone de partage"></img>
+                        <img src={thinHeart} alt="coeur"></img>
+                    </div>
                 </div>
             </div>
         </aside>  

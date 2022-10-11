@@ -7,7 +7,6 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function Header_main() {
     return (
-      <div>
       <main className="main">
         <img className="main__img col-12" src={image_main}></img>
         <div className="main__banner">
@@ -40,8 +39,6 @@ function Header_main() {
             </div>
         </div>
       </main>
-      </div>
-      
     );
   }
   
