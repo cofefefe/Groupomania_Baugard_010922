@@ -1,5 +1,8 @@
 const express = require('express')
+// Routes
 const userRoutes = require('./routes/user.routes')
+const postRoutes = require('./routes/post.routes')
+
 const bodyParser = require('body-parser')
 require('dotenv').config({path: './config/.env'})
 const app = express()
@@ -15,5 +18,6 @@ app.listen(process.env.PORT, () =>{
 
 // routes
 app.use('/api/user', userRoutes)
+app.use('/api/post',  postRoutes)
 
 

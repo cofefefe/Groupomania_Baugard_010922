@@ -1,4 +1,4 @@
-const userModels = require('../models/user.model')
+const userModels = require('../models/user.models')
 const objectId = require('mongoose').Types.ObjectId
 const { isValid } = require('validator')
 
