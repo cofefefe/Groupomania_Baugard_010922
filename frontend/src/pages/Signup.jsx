@@ -1,8 +1,24 @@
 import image_main from '../style/ressources/entreprise.webp'
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {useState} from "react";
+import {postUser} from "../Utils/apiCalls";
 
 function Signup() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordRepeat, setPasswordRepeat] = useState("");
+    const navigate = useNavigate();
+
+    const submit = (e) => {
+        e.preventDefault();
+        postUser({ firstName, lastName, password, email }).then(function () {
+            navigate('/homepage');
+        });
+    };
+
     return (
 <main>
     <div>
@@ -12,7 +28,7 @@ function Signup() {
         <h2 className="text-center">S'inscrire</h2>
         <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">Nom</label>
-            <input type="email" placeholder="Dupont" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            <input type="email" onChange={(e) => {setEmail(e.target.value)}} placeholder="Dupont" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
         </div>
         <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">Prénom</label>
@@ -34,9 +50,7 @@ function Signup() {
             <label htmlFor="exampleInputPassword1" className="form-label">Confirmation mot de passe</label>
             <input type="password" placeholder="6 caractères minimum dont une lettre et un nombre" className="form-control" id="exampleInputPassword1"/>
         </div>
-        <Link to="/homepage">
-        <button type="submit" className="d-flex justify-content-center w-50 m-auto connexion__button">Inscription</button>
-        </Link>
+        <input type="submit" onClick={submit} className="d-flex justify-content-center w-50 m-auto connexion__button"/>Inscription
     </form>
 </main>
     );
