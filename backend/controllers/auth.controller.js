@@ -1,6 +1,7 @@
-const User = require('../models/user.models')
+const Users = require('../models/user.models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+require('dotenv').config({path: '../config/.env'})
 
 module.exports.signUp = async (req,res) =>{
     // retrieve key/value from request
@@ -12,7 +13,7 @@ module.exports.signUp = async (req,res) =>{
     // Use user models to create new user
     bcrypt.hash(password, 10)
     .then(hash => {
-        const user = new User({
+        const user = new Users({
             firstname: firstname,
             name: name,
             email: email,
@@ -29,16 +30,15 @@ module.exports.signUp = async (req,res) =>{
     })
     .catch((error) => res.status(500).json({ error }))
 }
-
+// managing connection and adding token to userID
 exports.signIn = (req, res, next) => {
     // Compare user email with emails in the data base
-    User.findOne({ email: req.body.email })
+    Users.findOne({ email: req.body.email })
         .then((user) => {
             // if user dont exist
             if (!user) {
                 return res.status(401).json({ message: "Paire identifiant/mot de passe incorrect" })
             }
-            console.log(req.body.password, user.password)
             // compare their password with our data base
             bcrypt.compare(req.body.password, user.password)
                 .then((valid) => {
@@ -55,7 +55,8 @@ exports.signIn = (req, res, next) => {
                         )
                     })
                 })
-                .catch((error) => res.status(505).json({ error }))
+                .catch((error) => res.status(500).json({ error }))
         })
         .catch((error) => res.status(500).json({ error }))
 };
+
