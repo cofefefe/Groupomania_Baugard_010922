@@ -4,6 +4,11 @@ import {Link} from 'react-router-dom';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function Login() {
+    const [user, setUser] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
     return (
 <main>
     <div>
