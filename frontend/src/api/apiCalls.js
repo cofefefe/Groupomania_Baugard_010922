@@ -31,29 +31,29 @@ export function userLogin(params){
 }
 
 // verify if user is connected
-export async function userAuth(){
-    if(!localStorage.getItem('token')){
-        return false
+export async function userAuth() {
+    if (!localStorage.getItem('token')) {
+        return false;
     }
-    return fetch('http://localhost:5000/api/user/auth',{
-        method:'POST',
-        body:JSON.stringify({token:localStorage.getItem('token')}),
-        headers: {'Content-Type':'application/json; charset=utf-8'},
+    return fetch('http://localhost:5000/api/auth', {
+        method: 'POST',
+        body: JSON.stringify({ token: localStorage.getItem('token') }),
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
     })
-    .then(function(response){
-        return response.json()
-    })
-    .catch(function(err){
-        console.log(err)
-    })
-    .then(function(r){
-        if(r.hasOwnProperty('id')){
-            return r
-        }else{
-            console.log(r)
-            return false
-        }
-    })
+        .then(function (response) {
+            return response.json();
+        })
+        .catch(function (error) {
+            console.warn(error)
+        })
+        .then(function (r) {
+            if (r.hasOwnProperty('id')) {
+                return r;
+            } else {
+                console.warn(r)
+                return false;
+            }
+        });
 }
 
 // retrieve articles

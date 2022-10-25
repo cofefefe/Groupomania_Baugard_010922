@@ -47,7 +47,7 @@ exports.signIn = (req, res, next) => {
                     }
                     // create a token and connecting user
                     res.status(200).json({
-                        userId: user._id,
+                        user: user,
                         token: jwt.sign(
                             { userId: user._id },
                             process.env.TOKEN,
@@ -60,3 +60,17 @@ exports.signIn = (req, res, next) => {
         .catch((error) => res.status(500).json({ error }))
 };
 
+exports.auth = (req, res, next) => {
+    const {token} = req.body;
+    try {
+        var decodedToken = jwt.verify(token, process.env.TOKEN);
+        Users.findOne({_id: decodedToken.userId}).then(function (user) {
+            if (!user) {
+                return res.status(401).json({error: 'Utilisateur non trouvé !'});
+            }
+            return res.status(200).json(user);
+        });
+    } catch (error) {
+        return res.status(401).json(error);
+    }
+}

@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require("cors")
 // Routes
 const userRoutes = require('./routes/user.routes')
 const postRoutes = require('./routes/post.routes')
@@ -13,6 +14,9 @@ app.listen(process.env.PORT, () =>{
 
 require('./config/db')
 
+
+
+app.use(cors())
 
 // Cors middleware
 app.use((req, res, next) => {
