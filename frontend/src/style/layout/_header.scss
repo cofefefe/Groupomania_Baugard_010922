@@ -2,6 +2,7 @@
     padding:0!important;
     background-color:$third-color;
     z-index:3;
+    
     button{
         transition:ease-in 300ms;
         background-color:$secondary-color;
@@ -13,7 +14,9 @@
             color:black;
         }
     }
-    
+    nav{
+        justify-content:space-between
+    }
    
     h1{
         font-size:43px;
@@ -28,6 +31,7 @@
     }
     ul{
         margin-right:20px;
+        
     }
     a{
         color:white;
@@ -38,6 +42,8 @@
         margin-right:20px;
         margin-left:10px;
         border-radius:10px;
+        align-items:center;
+        list-style-type: none;
     }
     &__params{
         width:40px;
@@ -52,6 +58,12 @@
         background-color:$secondary-color!important;
         padding-left:0!important;
         padding-right:0!important;
+    }
+    p{
+        align-items:center;
+        margin-bottom:0;
+        margin-top:0;
+        padding:5px;
     }
 }
 

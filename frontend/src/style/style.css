@@ -12034,6 +12034,9 @@ main {
   background-color: #ddbcbc;
   color: black;
 }
+.header nav {
+  justify-content: space-between;
+}
 .header h1, .header .h1 {
   font-size: 43px;
   color: white;
@@ -12057,6 +12060,8 @@ main {
   margin-right: 20px;
   margin-left: 10px;
   border-radius: 10px;
+  align-items: center;
+  list-style-type: none;
 }
 .header__params {
   width: 40px;
@@ -12071,6 +12076,12 @@ main {
   background-color: #FFD7D7 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+.header p {
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -30,7 +30,7 @@ function Login() {
             return;
         }
         userLogin({ password, email }).then(function (response) {
-            console.log(user)
+
             if (response.user && response.user._id && response.token) {
                 localStorage.setItem("token", response.token);
                 setUser(response.user);

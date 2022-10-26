@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
+import Post from "../component/log/Post";
 import Nav from './Header'
+
 
 function Home(props) {
     const [user] = useContext(UserContext);
-    const [post] = useContext
+    
     const navigate = useNavigate()
-    console.log(user)
+
     return (
         <>
     <div className="homepage container-fluid pt-3">
@@ -26,7 +28,7 @@ function Home(props) {
         </aside>    
         <div className="homepage__border col-12 container"></div>
         <h4 className="container">Dernières publications</h4>
-    </div></>)
+    </div><Post /></>)
 }
 
 

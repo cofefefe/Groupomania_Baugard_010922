@@ -19,8 +19,7 @@ function Signup() {
     const validateForm = () => {
         let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$/;
         let regexPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
-        //console.log(email);
-        //console.log(password);
+
         if (regexEmail.test(email) === false || regexPassword.test(password) === false) {
 
             return false;
@@ -50,7 +49,7 @@ function Signup() {
     };
 
     const onClickHandler = () => {
-        console.log("ok")
+
         if (!validateForm()) {
             alert('Erreur dans le formulaire')
             // return; // TODO : uncomment it

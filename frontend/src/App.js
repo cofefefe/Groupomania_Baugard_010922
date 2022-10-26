@@ -11,7 +11,8 @@ import {UserContext} from "./Utils/userContext";
 
 function App() {
     const [user, setUser] = useState({});
-    
+
+
     useEffect(() => {
         userAuth().then((user) => {
             if (user && user["_id"]) {

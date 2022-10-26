@@ -8,7 +8,7 @@ function Header() {
   const [user, setUser] = useContext(UserContext);
 
   if(!user){
-    console.log(user)
+
     return (
       <header className="header container-fluid">
         <nav className="container navbar navbar-light navbar-expand-lg">
@@ -36,23 +36,23 @@ function Header() {
           <div className="header__banner--secondary"></div>
       </header>
   )}else{
-    console.log(user)
+
     return(
     <header className="header col-12 container-fluid">
         <nav className="container navbar navbar-light navbar-expand-lg">
           <img src={logo} className="header__logo" alt="logo Groupomania"/>
-            <ul class="header__main row col-9 justify-content-end">
-                  <li class="header__user rounded-5 col-3">
+            <ul className="header__main row col-9 justify-content-end">
+                  <li className="header__user rounded-5 col-3 row d-flex ">
                       <p style={{color:"black"}}>{user.name + ' ' + user.firstname}</p>
-                      <img src={user.picture} alt="profile pic"/>
+                      <img src={user.picture} />
                   </li>
-                  <li class="header__logout rounded-5 col-3">
+                  <li className="header__logout rounded-5 col-3 ">
                       <p style={{color:"black"}}>Déconnection</p>
-                      <i class="fa-solid fa-right-from-bracket"></i>
+                      <i className="fa-solid fa-right-from-bracket"></i>
                   </li>
-                  <li class="header__edit rounded-5 col-3">
+                  <li className="header__edit rounded-5 col-3">
                       <p style={{color:"black"}}>Editer</p>
-                      <i class="fa-solid fa-pen-to-square"></i>
+                      <i className="fa-solid fa-pen-to-square"></i>
                   </li>
               </ul>
         </nav>

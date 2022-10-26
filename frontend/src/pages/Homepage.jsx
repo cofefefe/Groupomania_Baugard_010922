@@ -1,9 +1,9 @@
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
 import BodyMenu from "./BodyMenu";
-import {getArticles} from "../api/apiCalls";
+import {deleteArticle, getArticles} from "../api/apiCalls";
 import * as PropTypes from "prop-types";
-import Post from "../component/log/post";
+import Post from "../component/log/Post";
 import Nav from "./Header";
 import Home from './Home'
 
@@ -15,20 +15,25 @@ Post.propTypes = {
 function Homepage() {
     const [user] = useContext(UserContext);
     const [posts, setPosts] = useState([]);
-   
-    useEffect(() => {
-        if (user) {refreshPosts();}}, [user]
-    );
-    const refreshPosts = () => {
-        console.log("refreshPosts")
-        getArticles().then((articles) => {
-            articles = [
-                {id:1, content:"mon article de test"}, {id:2, content:"mon article de test 2"}
-            ]
-            setPosts(articles);
-        })
-    };
 
+    const refreshPosts = () => {
+        getArticles().then((postsResult) => {
+           // console.log(postsResult)
+            setPosts(postsResult)
+        })
+    }
+    const onPostCreated = () => {
+        refreshPosts()
+    }
+    const onPostUpdated = () => {
+        refreshPosts();
+    }
+
+    useEffect(() => {
+        if (user) {
+            refreshPosts();
+        }
+    }, [user]);
     if (!user) {
         return (<>
                 <Nav/>

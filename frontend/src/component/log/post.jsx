@@ -1,28 +1,25 @@
 import {Link} from 'react-router-dom';
 import { UserContext } from '../../Utils/userContext';
 import { useContext } from "react";
+import { useState } from 'react';
+import {useSelector} from 'react-redux'
 
-function Post(props) {
+function Post(props, index) {
 
-    const onPostUpdate = () => {
-        props.onPostUpdated();
-    }
-    
-    const addPosts = () => {
-        return props.posts.map((post) => {
-            return < Post
-                key={post.id}
-                post={post}
-                handlePostDelete={() => props.handlePostDelete(post)}
-                onPostUpdated={props.onPostUpdated}
-            />;
-        })
-    }
+    const [user] = useContext(UserContext);
+    const postData = useSelector((state)=> state.post)
+    console.log(postData)
 
-    return (
-        <li>{addPosts()}</li>
-    );
-  }
+console.log(props.post)
+ 
+    return(
+        <>
+            <li className="container">
+                <p></p>
+            </li>
+        </>
+    )
+}
   
-  export default Post;
+export default Post;
   
