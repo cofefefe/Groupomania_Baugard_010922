@@ -41,19 +41,18 @@ export async function userAuth() {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
     })
         .then(function (response) {
-            return response.json();
+            
+            if (response.hasOwnProperty('id')) {
+                return response.json();
+            } else {
+                console.warn(response)
+                return false;
+            }
         })
         .catch(function (error) {
             console.warn(error)
         })
-        .then(function (r) {
-            if (r.hasOwnProperty('id')) {
-                return r;
-            } else {
-                console.warn(r)
-                return false;
-            }
-        });
+
 }
 
 // retrieve articles

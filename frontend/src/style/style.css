@@ -12062,6 +12062,13 @@ main {
   border-radius: 10px;
   align-items: center;
   list-style-type: none;
+  display: flex;
+}
+.header li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 15px;
 }
 .header__params {
   width: 40px;
