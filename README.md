@@ -1,6 +1,6 @@
 # Groupomania Social Network Company 
 # Frontend | React, Sass, Bootstrap
-# Backend  | Node
+# Backend  | Node, Express, MongoDB
 
 Initialzing project to your IDE : 
 
