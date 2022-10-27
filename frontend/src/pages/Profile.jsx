@@ -18,6 +18,8 @@ function Profile() {
         }
         return (<>{user.post}</>)
     }
+
+    const date = user.createdAt.toLocaleString('fr-FR', { month: 'long', day: 'numeric' })
     return (
         <>
             <Nav/>
@@ -25,13 +27,16 @@ function Profile() {
                 <div className="container bg-light h-100 justify-content-center d-flex">
                     <div className="profile__card row container">
                         <img className=" profile__card--img col-sm-2 mt-2 mb-2 rounded-5 container" src={user.picture} alt="photo de profil"></img>
-                        <h2 className="col-sm-6 offset-4 align-self-center"></h2>
+                        <h2 className="col-sm-6 offset-4 align-self-center">{user.name + ' ' + user.firstname}</h2>
                     </div>
                 </div>
                 <div className="pb-5 ml-2 container">
                     <h4 className="mt-3 col-sm-2">Bio :</h4>
                     <aside className="bg-light">
                         {user.bio}
+                        <div>
+                            <div>inscris depuis le {date}</div>
+                        </div>
                     </aside>
                 </div>
                 <section className="container">

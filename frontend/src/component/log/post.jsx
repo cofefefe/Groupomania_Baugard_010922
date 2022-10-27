@@ -13,22 +13,9 @@ function Post(props, index) {
 
     console.log(posts)
 
-
-    
-    // posts.map((post)=>{
-    //     return(
-    //         <li>{post}</li>
-    //     )
-    // })
-
-    
-        // return (
-        //     <>
-        //         <section>
-        //             ??
-        //         </section>
-        //     </>
-        // )
+    // return(
+    //     <p>{posts.content}</p>
+    // )
 
 } 
 export default Post;

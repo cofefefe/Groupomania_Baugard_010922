@@ -45,9 +45,7 @@ function Homepage() {
             <>
             <Nav />
             <Home />
-                {
-                    posts.map((post) => {return <Post key={post.id} post={post} onPostUpdated={refreshPosts}/>})
-                }
+            <Post />
             </>
         )
     }
