@@ -41,13 +41,7 @@ export async function userAuth() {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
     })
         .then(function (response) {
-            
-            if (response.hasOwnProperty('id')) {
-                return response.json();
-            } else {
-                console.warn(response)
-                return false;
-            }
+            return response.json()
         })
         .catch(function (error) {
             console.warn(error)

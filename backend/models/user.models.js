@@ -33,7 +33,9 @@ const userSchema = mongoose.Schema({
     },
     bio :{
         type:String,
-        maxLength:580
+        maxLength:580,
+        required:true,
+        default:"Je n'ai pas changé ma bio :("
     },
     post:{
         type:[String],

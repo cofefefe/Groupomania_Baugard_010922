@@ -42,10 +42,12 @@ function Header() {
         <nav className="container navbar navbar-light navbar-expand-lg">
           <img src={logo} className="header__logo" alt="logo Groupomania"/>
             <ul className="header__main row col-9 justify-content-end">
+              <Link to='/homepage/profile'>
                   <li className="header__user rounded-5 col-3">
                       <p style={{color:"black"}}>{user.name + ' ' + user.firstname}</p>
                       <img src={user.picture} />
                   </li>
+                </Link>
                   <li className="header__logout rounded-5 col-3 ">
                       <p style={{color:"black"}}>Déconnection</p>
                       <i className="fa-solid fa-right-from-bracket"></i>

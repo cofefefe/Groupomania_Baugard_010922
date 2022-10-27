@@ -15,7 +15,9 @@ function Home(props) {
     <div className="homepage container-fluid pt-3">
         <aside className="container d-flex rounded-2">
             <div className="col-2 homepage__profile d-flex mt-4">
-                <img src={user.picture} className="homepage__profile--pic" alt="portrait individuel"></img>
+                <Link to="homepage/profile">
+                    <img src={user.picture} className="homepage__profile--pic" alt="portrait individuel"></img>
+                </Link>
                 <p>{user.firstname + ' ' + user.name}</p>
             </div>
             <div className="col-10 homepage__textarea d-flex mt-4">

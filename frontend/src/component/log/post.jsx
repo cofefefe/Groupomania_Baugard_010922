@@ -4,29 +4,32 @@ import { useContext } from "react";
 import { useState } from 'react';
 import {Provider, useSelector} from 'react-redux'
 
-function displayArticles(props){
 
-    props.posts.map(post => {
-        return (<li>Ok ?????</li>)
-})}
 
 function Post(props, index) {
 
     const [user] = useContext(UserContext);
+    const posts = props.post
 
+    console.log(posts)
 
-    // posts est indéfini si je met une fonction dans le return
-   
-    return(
-        <>
-        <section>
-            {displayArticles()}
-        </section>
-        </>
-    )}
 
     
+    // posts.map((post)=>{
+    //     return(
+    //         <li>{post}</li>
+    //     )
+    // })
 
-  
+    
+        // return (
+        //     <>
+        //         <section>
+        //             ??
+        //         </section>
+        //     </>
+        // )
+
+} 
 export default Post;
   

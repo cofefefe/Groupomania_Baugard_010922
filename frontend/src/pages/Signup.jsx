@@ -91,13 +91,13 @@ function Signup() {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Mot de passe</label>
-                        <input type="password" placeholder="6 caractères minimum dont une lettre et un nombre" className="form-control" id="exampleInputPassword1" onChange={(e)=>{
+                        <input type="password" placeholder="8 caractères mini : un caractère special une lettre et un nombre" className="form-control" id="exampleInputPassword1" onChange={(e)=>{
                             setPassword(e.target.value)
                         }}/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Confirmation mot de passe</label>
-                        <input type="password" placeholder="6 caractères minimum dont une lettre et un nombre" className="form-control" id="repeatPassword" onChange={(e)=>{
+                        <input type="password" placeholder="8 caractères mini : un caractère special une lettre et un nombre" className="form-control" id="repeatPassword" onChange={(e)=>{
                             setPasswordRepeat(e.target.value)
                         }}/>
                     </div>
