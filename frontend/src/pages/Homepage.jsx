@@ -2,15 +2,10 @@ import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
 import BodyMenu from "./BodyMenu";
 import {deleteArticle, getArticles} from "../api/apiCalls";
-import * as PropTypes from "prop-types";
 import Post from "../component/log/Post";
 import Nav from "./Header";
-import Home from './Home'
+import CreatePost from "./CreatePost";
 
-Post.propTypes = {
-    post: PropTypes.shape({minLength: PropTypes.number, type: PropTypes.any, mxLength: PropTypes.number}),
-    handlePostDelete: PropTypes.func
-};
 
 function Homepage() {
     const [user] = useContext(UserContext);
@@ -18,14 +13,11 @@ function Homepage() {
 
     const refreshPosts = () => {
         getArticles().then((postsResult) => {
-           // console.log(postsResult)
             setPosts(postsResult)
         })
     }
+
     const onPostCreated = () => {
-        refreshPosts()
-    }
-    const onPostUpdated = () => {
         refreshPosts();
     }
 
@@ -34,6 +26,7 @@ function Homepage() {
             refreshPosts();
         }
     }, [user]);
+
     if (!user) {
         return (<>
                 <Nav/>
@@ -41,11 +34,14 @@ function Homepage() {
                 </>)
     } else {
         return (
-            
             <>
             <Nav />
-            <Home />
-            <Post />
+                <CreatePost onPostCreated={onPostCreated} />
+                {
+                    posts.map((post) => {
+                        return <Post key={post._id} post={post} onPostUpdated={refreshPosts}/>
+                    })
+                }
             </>
         )
     }

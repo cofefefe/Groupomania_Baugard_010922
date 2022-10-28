@@ -32,10 +32,11 @@ function Profile() {
                 </div>
                 <div className="pb-5 ml-2 container">
                     <h4 className="mt-3 col-sm-2">Bio :</h4>
+                    
                     <aside className="bg-light">
                         {user.bio}
                         <div>
-                            <div>inscris depuis le {date}</div>
+                            <div className="mt-2">inscris depuis le {date}</div>
                         </div>
                     </aside>
                 </div>

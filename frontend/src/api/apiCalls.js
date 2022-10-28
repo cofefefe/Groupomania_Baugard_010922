@@ -35,7 +35,7 @@ export async function userAuth() {
     if (!localStorage.getItem('token')) {
         return false;
     }
-    return fetch('http://localhost:5000/api/auth', {
+    return fetch('http://localhost:5000/api/user/auth', {
         method: 'POST',
         body: JSON.stringify({ token: localStorage.getItem('token') }),
         headers: { 'Content-Type': 'application/json; charset=utf-8' },

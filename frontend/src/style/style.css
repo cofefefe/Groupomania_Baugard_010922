@@ -11789,6 +11789,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #4E5166;
 }
 
 code {
@@ -11797,10 +11798,6 @@ code {
 
 h1, .h1 {
   color: #4E5166;
-}
-
-p {
-  color: #FFD7D7;
 }
 
 main {
@@ -12016,6 +12013,26 @@ main {
   width: 30px;
   height: 30px;
   margin-left: 15px;
+}
+
+.post {
+  background-color: #FD2D01 !important;
+}
+.post aside {
+  border-radius: 10px;
+}
+.post__picture {
+  width: 50px;
+  height: 50px;
+}
+.post__react {
+  margin-right: 15% !important;
+}
+.post__react--like {
+  margin-right: 30px;
+}
+.post__text {
+  width: max-content;
 }
 
 .header {
