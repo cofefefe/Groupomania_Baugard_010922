@@ -38,6 +38,9 @@ function Homepage() {
             <Nav />
                 <CreatePost onPostCreated={onPostCreated} />
                 {
+                    console.log(posts)
+                }
+                {
                     posts.map((post) => {
                         return <Post key={post._id} post={post} onPostUpdated={refreshPosts}/>
                     })

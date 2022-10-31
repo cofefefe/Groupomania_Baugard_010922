@@ -13,12 +13,15 @@ module.exports.getPost = (req,res,next)=>{
 
 exports.addPost = async (req,res,next)=>{    
  
-    const newPost = new postModel({
-        posterId:req.body.posterId,
-        content:req.body.content,
+    
+    let newPost = {
         picture:req.body.picture,
-        like:[]
-    })
+        content:req.body.content,
+        posterId: req.body._id,
+        like:[],
+        createdAt: new Date(),
+        updatedAt: new Date()
+    }
     newPost.save()
     .then(()=>{
       res.status(200).json({message:"publication du message réussie !"})

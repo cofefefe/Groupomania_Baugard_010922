@@ -20,7 +20,6 @@ function CreatePost(props) {
                 posterId: user._id
             }}
         addArticle(params).then(function () {
-            setContent('')
             setPosterId('')
             props.onPostCreated();
         });

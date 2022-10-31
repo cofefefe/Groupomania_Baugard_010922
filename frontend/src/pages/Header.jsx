@@ -1,12 +1,17 @@
 import logo from '../style/ressources/logo.png'
 import svgparameter from '../style/ressources/parameter.png' 
-import {Link, Navigate} from 'react-router-dom';
+import {Link, Navigate, useRouteLoaderData} from 'react-router-dom';
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
 
 function Header() {
   const [user, setUser] = useContext(UserContext);
-
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    Navigate('/login');
+}
+  
  
 
   if(!user){
@@ -38,14 +43,6 @@ function Header() {
           <div className="header__banner--secondary"></div>
       </header>
   )}else{
-    // const removeToken = () =>{
-    //   if(localStorage.getItem('token')){
-    //     localStorage.removeItem('token')
-    //     Navigate('/homepage')
-    //     console.log('ok?')
-    //   }
-    // onClick={removeToken()}
-    }
     return(
     <header className="header col-12 container-fluid">
         <nav className="container navbar navbar-light navbar-expand-lg">
@@ -60,7 +57,7 @@ function Header() {
                     </Link>
                   </li>
                   <li className="header__logout rounded-5 col-3 ">
-                      <button style={{color:"black"}}>Déconnection</button>
+                      <button onClick={logout} style={{color:"black"}}>Déconnection</button>
                       <i className="fa-solid fa-right-from-bracket"></i>
                   </li>
                   <li className="header__edit rounded-5 col-3">
@@ -70,7 +67,8 @@ function Header() {
               </ul>
         </nav>
     </header>
-)}
+)}}
   
-  export default Header;
+
+export default Header;
   
