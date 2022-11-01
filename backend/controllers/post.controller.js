@@ -12,23 +12,25 @@ module.exports.getPost = (req,res,next)=>{
 }
 
 exports.addPost = async (req,res,next)=>{    
- 
+    console.log('req.body : ' + req.body)
     
-    let newPost = {
-        picture:req.body.picture,
+    let post = new postModel({
         content:req.body.content,
-        posterId: req.body._id,
-        like:[],
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        likes:[],
+        userLiked:[]
+    })
+    if (req.file) {
+        post.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
-    newPost.save()
-    .then(()=>{
-      res.status(200).json({message:"publication du message réussie !"})
-    })
-    .catch((error)=>{
-      res.status(400).json({error})
-    })
+    post.save()
+        .then(()=>{
+            res.status(200).json({message:"enregistrement du post réussi !"})
+          })
+          .catch((error)=>{
+            res.status(420).json({error})
+          })
 }
 
 module.exports.modifyPost = (req,res,next)=>{
@@ -38,8 +40,7 @@ module.exports.modifyPost = (req,res,next)=>{
 module.exports.deletePost = (req,res,next)=>{
     postModel.findOne({_id:req.params.id})
         .then((post)=>{
-            console.log("req.params.id :", req.params.id)
-            console.log("post",post)
+
             post.deleteOne({_id:req.params.id})
                 .then(()=>{
                     res.status(200).json(message, ' : votre publication est supprimée ')

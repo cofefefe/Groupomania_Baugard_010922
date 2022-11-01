@@ -13,7 +13,8 @@ function CreatePost(props) {
     
     const navigate = useNavigate()
 
-    const createPost = () => {
+    const createPost = (req,res,next) => {
+    
         let params = {
             post: {
                 content:content,

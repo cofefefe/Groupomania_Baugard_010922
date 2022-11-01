@@ -251,7 +251,8 @@ main{
 }
 
 .post{
-  background-color:$primary-color!important;
+  background-color:gray;
+
   aside{
     border-radius:10px;
   }
@@ -262,7 +263,7 @@ main{
   &__react{
    margin-right:15%!important;
     &--like{
-      margin-right:30px;
+      margin-right:5%;
     }
   }
   &__text{

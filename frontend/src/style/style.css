@@ -12016,7 +12016,7 @@ main {
 }
 
 .post {
-  background-color: #FD2D01 !important;
+  background-color: gray;
 }
 .post aside {
   border-radius: 10px;
@@ -12029,7 +12029,7 @@ main {
   margin-right: 15% !important;
 }
 .post__react--like {
-  margin-right: 30px;
+  margin-right: 5%;
 }
 .post__text {
   width: max-content;
