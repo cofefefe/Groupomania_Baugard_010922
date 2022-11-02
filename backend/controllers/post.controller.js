@@ -11,12 +11,11 @@ module.exports.getPost = (req,res,next)=>{
     })
 }
 
-exports.addPost = async (req,res,next)=>{    
-
-    const postObject = JSON.stringify(req.body)
-    console.log(postObject)
+exports.addPost = async (req,res,next)=>{
+    let postObject = req.body.post
     const content = req.body.content
     const posterId = req.body.id
+    
     let post = new postModel({
         ...postObject,
         content:content,
@@ -26,6 +25,8 @@ exports.addPost = async (req,res,next)=>{
         likes:0,
         userLiked:[]
     })
+    console.log("post", post)
+
     if (req.file) {
         post.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }

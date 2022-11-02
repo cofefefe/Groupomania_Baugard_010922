@@ -1,10 +1,11 @@
 const router = require('express').Router()
 const postController = require('../controllers/post.controller')
 const likeController = require('../controllers/like.controller')
+const multer = require('../config/multer-config');
 
 router.get('/', postController.getPost)
 
-router.post('/', postController.addPost)
+router.post('/', multer, postController.addPost)
 
 router.put('/:id', postController.modifyPost)
 

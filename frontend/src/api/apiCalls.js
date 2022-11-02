@@ -71,10 +71,9 @@ export function addArticle(params){
     data.append('content', params.post.content)
     data.append('posterId', params.post.posterId)
 
-    console.log('params' + JSON.stringify(params))
     return fetch('http://localhost:5000/api/post',{
         method:'POST',
-        body:JSON.stringify(data),
+        body: data,
         headers:{'Authorization': localStorage.getItem('token')}
     })
     .then(function(res){
