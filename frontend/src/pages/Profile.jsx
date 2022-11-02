@@ -19,7 +19,8 @@ function Profile() {
         return (<>{user.post}</>)
     }
 
-    const date = user.createdAt.toLocaleString('fr-FR', { month: 'long', day: 'numeric' })
+    const date = user.createdAt
+    
     return (
         <>
             <Nav/>
@@ -30,7 +31,7 @@ function Profile() {
                         <h2 className="col-sm-6 offset-4 align-self-center">{user.name + ' ' + user.firstname}</h2>
                     </div>
                 </div>
-                <div className="pb-5 ml-2 container">
+                <div className="bio pb-5 ml-2 container">
                     <h4 className="mt-3 col-sm-2">Bio :</h4>
                     
                     <aside className="bg-light">

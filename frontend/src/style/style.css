@@ -11803,6 +11803,9 @@ h1, .h1 {
 main {
   height: 821px;
 }
+main .bio {
+  border: 1px solid #FFD7D7;
+}
 
 .main {
   margin: 0;
@@ -12080,6 +12083,11 @@ main {
   align-items: center;
   list-style-type: none;
   display: flex;
+  cursor: pointer;
+  transition: ease-in 300ms;
+}
+.header li:hover {
+  background-color: #ddbcbc;
 }
 .header li img {
   width: 50px;
@@ -12106,6 +12114,12 @@ main {
   margin-bottom: 0;
   margin-top: 0;
   padding: 5px;
+}
+
+@media (max-width: 993px) {
+  li img {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -12,13 +12,18 @@ module.exports.getPost = (req,res,next)=>{
 }
 
 exports.addPost = async (req,res,next)=>{    
-    console.log('req.body : ' + req.body)
-    
+
+    const postObject = JSON.stringify(req.body)
+    console.log(postObject)
+    const content = req.body.content
+    const posterId = req.body.id
     let post = new postModel({
-        content:req.body.content,
+        ...postObject,
+        content:content,
+        posterId:posterId,
         createdAt: new Date(),
         updatedAt: new Date(),
-        likes:[],
+        likes:0,
         userLiked:[]
     })
     if (req.file) {
@@ -27,9 +32,12 @@ exports.addPost = async (req,res,next)=>{
     post.save()
         .then(()=>{
             res.status(200).json({message:"enregistrement du post réussi !"})
+            console.log('on est dans le then')
+            console.log('api call req body'+ postObject)
           })
           .catch((error)=>{
             res.status(420).json({error})
+            console.log('dans le catch')
           })
 }
 

@@ -67,11 +67,14 @@ export function getArticles(){
 export function addArticle(params){
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
-    data.append('images', params.imageUrl)
+    data.append('images', params.post.imageUrl)
+    data.append('content', params.post.content)
+    data.append('posterId', params.post.posterId)
 
+    console.log('params' + JSON.stringify(params))
     return fetch('http://localhost:5000/api/post',{
         method:'POST',
-        body:data,
+        body:JSON.stringify(data),
         headers:{'Authorization': localStorage.getItem('token')}
     })
     .then(function(res){
@@ -106,6 +109,20 @@ export function deleteArticle(params){
     return fetch('http://localhost:5000/api/post' + params.post.id,{
         method:'DELETE',
         headers:{'Authorization':localStorage.getItem('token')}
+    })
+    .then(function(res){
+        return res.json()
+    })
+    .catch(function(err){
+        console.log(err)
+    })
+}
+
+export function addLike(params){
+    let data = new FormData()
+    return fetch('http://localhost:5000/api/post/:id/like',{
+        method:'POST',
+        header:{'Authorization':localStorage.getItem('token')}
     })
     .then(function(res){
         return res.json()

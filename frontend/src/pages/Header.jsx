@@ -52,7 +52,7 @@ function Header() {
             <ul className="header__main row col-9 justify-content-end">
                   <li className="header__user rounded-5 col-3">
                   <Link to='/homepage/profile' className='d-flex'>
-                      <p style={{color:"black"}}>{user.name + ' ' + user.firstname}</p>
+                      <button style={{color:"black"}}>{user.name + ' ' + user.firstname}</button>
                       <img src={user.picture} />
                     </Link>
                   </li>
@@ -61,7 +61,7 @@ function Header() {
                       <i className="fa-solid fa-right-from-bracket"></i>
                   </li>
                   <li className="header__edit rounded-5 col-3">
-                      <p style={{color:"black"}}>Editer</p>
+                      <button style={{color:"black"}}>Editer</button>
                       <i className="fa-solid fa-pen-to-square"></i>
                   </li>
               </ul>

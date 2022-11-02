@@ -3,7 +3,7 @@ import { UserContext } from '../../Utils/userContext';
 import { useContext } from "react";
 import { useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa'
-
+import { addLike } from '../../api/apiCalls';
 
 function Post(props, index) {
 
@@ -18,6 +18,10 @@ function Post(props, index) {
                 </div>
             )
         }
+    }
+
+    function onClickHandler(){
+        addLike()
     }
 
     function retrieveUserByPost(){
@@ -37,7 +41,7 @@ function Post(props, index) {
                     <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}</p>
                 </div>
                 <div className="post__react d-flex container justify-content-end ">
-                        <i className="post__react--like pb-2"><FaRegHeart style={{width:30,height:30}}/></i>
+                        <i className="post__react--like pb-2"><FaRegHeart  onClick={onClickHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
                 </div>  
             </aside>
             </div>
