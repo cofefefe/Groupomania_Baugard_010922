@@ -14,8 +14,8 @@ module.exports.getPost = (req,res,next)=>{
 exports.addPost = async (req,res,next)=>{
     let postObject = req.body.post
     const content = req.body.content
-    const posterId = req.body.id
-    
+    const posterId = req.body.posterId
+
     let post = new postModel({
         ...postObject,
         content:content,
@@ -43,10 +43,10 @@ exports.addPost = async (req,res,next)=>{
 }
 
 module.exports.modifyPost = (req,res,next)=>{
-    console.log('modifypost')
+    console.log(req.params)
 }
 
-module.exports.deletePost = (req,res,next)=>{
+module.exports.deleteArticle = (req,res,next)=>{
     postModel.findOne({_id:req.params.id})
         .then((post)=>{
 
@@ -60,7 +60,5 @@ module.exports.deletePost = (req,res,next)=>{
         })
         .catch((err)=>{
             res.status(402).json(err)
-            console.log(err)
-            console.log(post)
         })
 }
