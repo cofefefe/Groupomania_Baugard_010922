@@ -29,7 +29,7 @@ function Post(props, index) {
             });
     }
 
-    function updateArticle(params){
+    function updateArticle(req,res,next){
         let params = {
             post: {
                 content:props.post.content,
