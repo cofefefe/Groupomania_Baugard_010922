@@ -67,10 +67,11 @@ export function getArticles(){
 export function addArticle(params){
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
-    data.append('images', params.post.imageUrl)
+    data.append('image', params.post.imageUrl)
     data.append('content', params.post.content)
     data.append('posterId', params.post.posterId)
 
+    console.log('params' + JSON.stringify(params))
     return fetch('http://localhost:5000/api/post',{
         method:'POST',
         body: data,
@@ -86,27 +87,26 @@ export function addArticle(params){
 
 // modify article
 export function modifyArticle(params){
-    let data = new FormData();
-    data.append('post', JSON.stringify(params.post));
-    data.append('image', params.imageUrl);
-    console.log(JSON.parse(params))
-    return fetch('http://localhost:5000/api/post/' + params.post.id, {
-        method: 'PATCH',
-        body: data,
-        headers: {'Authorization': localStorage.getItem('token')},
+    let data = new FormData()
+    data.append('post', JSON.stringify(params.post))
+    data.append('image', params.post.imageUrl)
+
+    return fetch('http://localhost:5000/api/post/' + params.post._id,{
+        method:'PUT',
+        body:data,
+        headers:{'Authorization':localStorage.getItem('token')}
     })
-        .then(function (response) {
-            return response.json();
-        })
-        .catch(function (error) {
-            console.warn(error)
-        });
+    .then(function(res){
+        return res.json()
+    })
+    .catch(function(err){
+        console.log(err)
+    })
 }
 
 // delete article
 export function deleteArticle(params){
-    console.log(params)
-    return fetch('http://localhost:5000/api/post/' + params.post.id,{
+    return fetch('http://localhost:5000/api/post' + params.post.id,{
         method:'DELETE',
         headers:{'Authorization':localStorage.getItem('token')}
     })

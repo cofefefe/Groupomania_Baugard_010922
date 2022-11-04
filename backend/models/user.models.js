@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const { isEmail } = require('validator')
 
 const userSchema = mongoose.Schema({
+    isAdmin: {
+        type:Boolean,
+        required:true,
+        default: false
+    },
     firstname:{
         type:String,
         required:true,

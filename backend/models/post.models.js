@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const postSchema = mongoose.Schema({
-    posterId: { type: String, required:true },
+    posterId: { type: String },
     content: { type: String, trim: true, maxlenght: 500 },
     imageURL: { type: String },
     likes: { type: Number, default : 0 },

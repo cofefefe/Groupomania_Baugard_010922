@@ -9,19 +9,28 @@ function CreatePost(props) {
     const [user] = useContext(UserContext);
     const [post, setPost] = useState(null);
     const [content, setContent] = useState('');
-    const [posterId, setPosterId] = useState('');
-    
+    const [image, setImage] = useState('');
+
     const navigate = useNavigate()
+
+    const onImageChange = event => {
+        if (event.target.files && event.target.files[0]) {
+            let img = event.target.files[0];
+            setImage(img);
+            console.log("img", img)
+        }
+    };
 
     const createPost = (req,res,next) => {
     
         let params = {
             post: {
                 content:content,
-                posterId: user._id
-            }}
+                posterId: user._id,
+                imageUrl: image
+            },
+        }
         addArticle(params).then(function () {
-            setPosterId('')
             props.onPostCreated();
         });
     }
@@ -39,7 +48,7 @@ function CreatePost(props) {
             <div className="col-10 homepage__textarea d-flex mt-4">
                 <textarea value={content} placeholder="Quoi de neuf ?" className="rounded-2" onChange={(e) => setContent(e.target.value)}></textarea>
                 <div className="homepage__button d-flex offset-6 mt-4 mb-4">
-                    <button>Ajouter photo</button>
+                    <input className="form-control form-control-sm btn btn-danger" id="formFileSm" type="file" onChange={onImageChange} />
                     <button onClick={createPost}>Envoyer</button>
                 </div>                
             </div>

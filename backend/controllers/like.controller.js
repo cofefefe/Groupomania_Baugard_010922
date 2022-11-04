@@ -20,7 +20,7 @@ exports.likePost = (req, res) => {
           .then(() =>
             res.status(200).json({ message: "Like ajouté!", liked: true })
           )
-          .catch((error) => res.status(400).json({ error }))
+          .catch((error) => res.status(400).json({ error }));
       }
-    })
-  }
+    });
+  };
