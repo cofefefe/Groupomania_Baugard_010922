@@ -5,12 +5,12 @@ import { modifyArticle } from "../api/apiCalls";
 const UpdatePost = (props) => {
     const [contentModified, setContentModified] = useState('');
     const [imageModified, setImageModified] = useState('');
-    const [newImageUrl, setNewImageUrl] = useState('');
+    const [newimageUrl, setNewimageUrl] = useState('');
 
     useEffect(() => {
         setContentModified(props.post.content);
         setImageModified(props.post.imageUrl);
-        setNewImageUrl(props.post.imageUrl);
+        setNewimageUrl(props.post.imageUrl);
     }, []);
 
     const handleUpdatePost = () => {
@@ -34,7 +34,7 @@ const UpdatePost = (props) => {
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             setImageModified(img);
-            setNewImageUrl(URL.createObjectURL(img));
+            setNewimageUrl(URL.createObjectURL(img));
         }
     };
 
@@ -54,7 +54,7 @@ const UpdatePost = (props) => {
 
                 </div>
                 {
-                    props.post.imageUrl ? <img src={newImageUrl} className="post-img img-fluid" /> : <></>
+                    props.post.imageUrl ? <img src={newimageUrl} className="post-img img-fluid" /> : <></>
                 }
                 <div className="d-flex justify-content-end align-items-center">
                     <button type="button" className="btn btn-danger btn-sm" onClick={props.handleCancel}>Annuler</button>

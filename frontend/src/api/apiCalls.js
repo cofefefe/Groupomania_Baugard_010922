@@ -67,7 +67,7 @@ export function getArticles(){
 export function addArticle(params){
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
-    data.append('image', params.post.imageURL)
+    data.append('image', params.post.imageUrl)
     data.append('content', params.post.content)
     data.append('posterId', params.post.posterId)
 
@@ -89,7 +89,7 @@ export function addArticle(params){
 export function modifyArticle(params){
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
-    data.append('image', params.post.imageURL)
+    data.append('image', params.post.imageUrl)
 
     return fetch('http://localhost:5000/api/post/' + params.post._id,{
         method:'PUT',

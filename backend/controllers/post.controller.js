@@ -25,7 +25,7 @@ exports.addPost = async (req,res,next)=>{
         userLiked:[]
     })
     if (req.file) {
-        post.imageURL = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        post.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
     console.log("post", post)
     post.save()
@@ -59,12 +59,12 @@ module.exports.modifyPost = (req,res,next)=>{
         // 1. Chercher le nom du fichier
         if (req.file) {
             // 2. supprimer l'image du serveur si elle existe
-            if (post.imageURL) {
-                const filename = post.imageURL.split('/images/')[1];
+            if (post.imageUrl) {
+                const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`);
             }
             try {
-                newPost.imageURL = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+                newPost.imageUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
                 postModel.updateOne({_id: newPost._id}, newPost)
                     .then(() => res.status(200).json({message: 'Article modifié !'}));
             } catch (error){
