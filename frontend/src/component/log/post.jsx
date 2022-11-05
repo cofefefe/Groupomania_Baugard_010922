@@ -21,16 +21,20 @@ function Post(props, index) {
         post: {
             content:props.post.content,
             posterId: user._id,
-            _id:props.post._id
+            _id:props.post._id,
+            imageUrl: props.post.imageUrl
         }}
 
-    function onClickHandler(){
-        addLike()
-    }
+    
     function refreshPost(){
         getArticles()
     }
 
+    const likeHandler = () => {
+        addLike(params).then(function(){
+            console.log('like Handler' + JSON.stringify(params))
+        })
+    }
 
     function handlePostDelete(req, res, next){
         deleteArticle(params).then(function(){
@@ -47,6 +51,13 @@ function Post(props, index) {
                     <button onClick={handlePostDelete}><BsTrash /></button>
                 </div>
             )
+        }
+    }
+
+    const displayImg = () => {
+        console.log(props.post.imageUrl)
+        if(props.post.imageUrl){
+            return <img src={props.post.imageUrl} className="post-img img-fluid" alt={props.post.id} />
         }
     }
 
@@ -71,7 +82,7 @@ function Post(props, index) {
                         <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}</p>
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
-                        <i className="post__react--like pb-2">{props.post.like}<FaRegHeart  onClick={onClickHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
+                        <i className="post__react--like pb-2">{props.post.like}<FaRegHeart  onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
                     </div>
                 </aside>
             </div>
@@ -87,9 +98,10 @@ function Post(props, index) {
                             <p>{props.post.createdAt.slice(0,10)}</p>
                         </div>
                         <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}</p>
+                        {displayImg()}
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
-                        <i className="post__react--like pb-2">{props.post.like}<FaRegHeart  onClick={onClickHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
+                        <i className="post__react--like pb-2">{props.post.like}<FaRegHeart  onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
                     </div>
                 </aside>
             </div>

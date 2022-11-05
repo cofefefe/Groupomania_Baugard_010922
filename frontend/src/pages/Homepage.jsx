@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
 import BodyMenu from "./BodyMenu";
 import {deleteArticle, getArticles} from "../api/apiCalls";
-import Post from "../component/log/Post";
+import Post from "../component/log/post";
 import Nav from "./Header";
 import CreatePost from "./CreatePost";
 
