@@ -20,7 +20,8 @@ function Post(props, index) {
     let params = {
         post: {
             content:props.post.content,
-            posterId: user._id
+            posterId: user._id,
+            _id:props.post._id
         }}
 
     function onClickHandler(){
@@ -30,15 +31,10 @@ function Post(props, index) {
         getArticles()
     }
 
-    function deletePost(req,res,next){
-        deleteArticle(params).then(function () {
-            refreshPost()
-        });
-    }
 
-    function handlePostDelete(params){
-        modifyArticle(params).then(function(){
-            console.log('on est au bout ?')
+    function handlePostDelete(req, res, next){
+        deleteArticle(params).then(function(){
+            refreshPost()
         })
     }
 

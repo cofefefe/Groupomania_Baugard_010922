@@ -84,20 +84,10 @@ module.exports.modifyPost = (req,res,next)=>{
 }
 
 module.exports.deletePost = (req,res,next)=>{
-    postModel.findOne({_id:req.params.id})
-        .then((post)=>{
-
-            post.deleteOne({_id:req.params.id})
-                .then(()=>{
-                    res.status(200).json(message, ' : votre publication est supprimée ')
-                })
-                .catch((err)=>{
-                    res.status(401).json({err})
-                })
-        })
+    postModel.findOneAndDelete({_id:req.params.id})
+        .then(() => res.status(200).json({message: 'Article supprimé !'}))
         .catch((err)=>{
-            res.status(402).json(err)
+            res.status(400).json(err)
             console.log(err)
-            console.log(post)
         })
-}
+    }
