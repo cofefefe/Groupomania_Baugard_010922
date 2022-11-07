@@ -271,5 +271,19 @@ main{
   }
   &__text{
     width:max-content;
+    flex-direction:column;
+  }
+}
+
+.edit{
+  background-color:$secondary-color;
+  margin-top:50px;
+  &__title{
+    color:$secondary-color;
+    border-bottom:$secondary-color solid 3px;
+  }
+  &__picture{
+    width:80px;
+    height:80px;
   }
 }

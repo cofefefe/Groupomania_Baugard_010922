@@ -1,26 +1,28 @@
 const Post = require('../models/post.models')
+const User = require('../models/user.models')
 
 exports.likePost = (req, res) => {
-    Post.findOne({ _id: req.params.id }).then((req) => {
-      console.log("req", req);
-      if (req.like.includes(req.auth.userId)) {
-        Post.findOneAndUpdate(
-          { _id: req.params.id },
-          { $inc: { likes: -1 }, $pull: { likers: req.auth.userId } }
+  
+  Post.findOne({ _id: req.params.id })
+    .then((response) => {
+    if (response.usersLiked.includes(User._id)) {
+      Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $inc: { likes: -1 }, $pull: { usersLiked: User._id } }
+      )
+        .then((response) =>
+          response.status(200).json({ message: "like retiré !", liked: false })
         )
-          .then(() =>
-            res.status(200).json({ message: "like retiré !", liked: false })
-          )
-          .catch((error) => res.status(400).json({ error }));
-      } else {
-        Post.findOneAndUpdate(
-          { _id: req.params.id },
-          { $inc: { likes: 1 }, $push: { likers: req.auth.userId } }
+        .catch((err) => response.status(400).json({ err }));
+    } else {
+      Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $inc: { likes: 1 }, $push: { usersLiked: User._id } }
+      )
+        .then((response) =>
+          response.status(200).json({ message: "Like ajouté!", liked: true })
         )
-          .then(() =>
-            res.status(200).json({ message: "Like ajouté!", liked: true })
-          )
-          .catch((error) => res.status(400).json({ error }));
-      }
-    });
-  };
+        .catch((err) => console.log(err));
+    }
+  });
+};

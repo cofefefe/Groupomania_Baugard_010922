@@ -12036,6 +12036,20 @@ main .bio {
 }
 .post__text {
   width: max-content;
+  flex-direction: column;
+}
+
+.edit {
+  background-color: #FFD7D7;
+  margin-top: 50px;
+}
+.edit__title {
+  color: #FFD7D7;
+  border-bottom: #FFD7D7 solid 3px;
+}
+.edit__picture {
+  width: 80px;
+  height: 80px;
 }
 
 .header nav {

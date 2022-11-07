@@ -7,11 +7,15 @@ import {AiOutlineEdit, AiOutlineLogout} from 'react-icons/ai'
 
 function Header() {
   const [user, setUser] = useContext(UserContext);
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    Navigate('/login');
-}
+
+    const logout = () => {
+      localStorage.removeItem("token");
+      setUser(null);
+      Navigate('/login');
+  }
+
+
+
   
  
 
@@ -57,9 +61,11 @@ function Header() {
                       <img src={user.picture} className="rounded-5" />
                     </Link>
                   </li>
+                  <Link to="/EditProfile">
                   <li className="header__edit align-items-center rounded-5">
                       <button className='rounded-5' style={{color:"black", fontSize:'12px'}}><AiOutlineEdit className="header__icon"/></button>
                   </li>
+                  </Link>
                   <li className="header__logout align-items-center rounded-5">
                       <button className='rounded-5' onClick={logout} style={{color:"black", fontSize:'12px'}}><AiOutlineLogout className="header__icon" /></button>                     
                   </li>

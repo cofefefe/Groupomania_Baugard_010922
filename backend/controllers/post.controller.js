@@ -24,8 +24,10 @@ exports.addPost = async (req,res,next)=>{
         likes:0,
         userLiked:[]
     })
-    if (req.file) {
+    console.log('req file'+req.file)
+    if (req.file != null || req.file != undefined) {
         post.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        console.log(post.imageUrl)
     }
     console.log("post", post)
     post.save()
@@ -83,11 +85,23 @@ module.exports.modifyPost = (req,res,next)=>{
     });
 }
 
-module.exports.deletePost = (req,res,next)=>{
-    postModel.findOneAndDelete({_id:req.params.id})
-        .then(() => res.status(200).json({message: 'Article supprimé !'}))
-        .catch((err)=>{
-            res.status(400).json(err)
-            console.log(err)
-        })
-    }
+exports.deletePost = (req, res, next) => {
+    // Find the sauce by id
+    postModel.findOne({ _id: req.params.id})
+        .then(post => {
+            // retrieve filename by path of img
+            
+                const filename = post.imageUrl.split('/images/')[1]
+
+                // Delete the img of post removed
+                fs.unlink(`images/${filename}`, () => {
+                    postModel.deleteOne({_id: req.params.id})
+                        .then(() => { res.status(200).json({message: 'post supprimé !'})})
+                        .catch(error => res.status(401).json({ error }))
+                });
+            })
+        .catch( error => {
+            res.status(500).json({ error });
+            console.log({error})
+        });
+ };

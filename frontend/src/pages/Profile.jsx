@@ -11,7 +11,7 @@ import {useContext} from 'react'
 
 function Profile() {
     const [user] = useContext(UserContext);
-
+    console.log(user.post)
     function userGotPost(){
         if(!user.post){
             return (<p>Pas encore de publication ?</p>)

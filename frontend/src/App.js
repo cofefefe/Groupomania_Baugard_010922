@@ -5,6 +5,7 @@ import Nav from './pages/Header'
 import Signup from './pages/Signup'
 import Homepage from './pages/Homepage'
 import Profile from './pages/Profile'
+import EditProfile  from './pages/EditProfile'
 import {useEffect, useState} from "react";
 import {userAuth} from "./api/apiCalls";
 import {UserContext} from "./Utils/userContext";
@@ -34,6 +35,7 @@ function App() {
                         <Route path='/signin' element={<Signin/>}/>
                         <Route path='/signup' element={<Signup/>}/>
                         <Route path='/homepage/profile' element={<Profile/>}/>
+                        <Route path='/EditProfile' element={<EditProfile />}/>
                     </Routes>
                 </Router>
             </UserContext.Provider>

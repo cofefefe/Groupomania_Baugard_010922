@@ -53,7 +53,7 @@ export async function userAuth() {
 export function getArticles(){
     return fetch('http://localhost:5000/api/post',{
         method:'GET',
-        headers:{ 'Content-Type': 'application/json; charset=utf-8', 'Authorization': localStorage.getItem('token')}
+        headers:{ 'Content-Type': 'application/json; charset=utf-8; image/pgn; image/jpg', 'Authorization': localStorage.getItem('token')}
     })
     .then(function (res){
         return res.json()
@@ -70,8 +70,6 @@ export function addArticle(params){
     data.append('image', params.post.imageUrl)
     data.append('content', params.post.content)
     data.append('posterId', params.post.posterId)
-
-    console.log('params' + JSON.stringify(params))
     return fetch('http://localhost:5000/api/post',{
         method:'POST',
         body: data,
@@ -106,7 +104,6 @@ export function modifyArticle(params){
 
 // delete article
 export function deleteArticle(params){
-    console.log(params.post._id)
     return fetch('http://localhost:5000/api/post/' + params.post._id,{
         method:'DELETE',
         headers:{'Authorization':localStorage.getItem('token')}
@@ -121,7 +118,7 @@ export function deleteArticle(params){
 
 export function addLike(params){
     let data = new FormData()
-    return fetch('http://localhost:5000/api/post/:id/like',{
+    return fetch('http://localhost:5000/api/post/'+params.post._id+'/like',{
         method:'POST',
         header:{'Authorization':localStorage.getItem('token')}
     })
