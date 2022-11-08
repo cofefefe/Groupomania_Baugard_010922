@@ -287,3 +287,12 @@ main{
     height:80px;
   }
 }
+
+@media (max-width: 997px) {
+  .edit{
+    form{
+      flex-direction:column;
+    }
+    
+  }
+}

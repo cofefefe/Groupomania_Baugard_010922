@@ -74,7 +74,7 @@ function Post(props, index) {
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
                             <img src={user.picture} className="rounded-5 post__picture" alt="Photo de profil"/>
-                            <p >{params.po + ' ' + user.firstname}</p>
+                            <p >{params.post.name + ' ' + user.firstname}</p>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
                             {displayActionButtons()}
                         </div>

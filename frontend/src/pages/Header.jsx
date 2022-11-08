@@ -27,10 +27,7 @@ function Header() {
           <a className="navbar-brand mb-0 h1 header__info" cursor="pointer">
             <img src={logo} className="header__logo" alt="Logo de groupomania"/>Groupomania
           </a>
-          <button data-toggle="collapse" className="header__btn--params navbar-toggler bg-light bg-warning">
-            <img className="header__params" src={svgparameter}/>
-          </button>
-          <div className="collapse navbar-collapse offset-xl-5 offset-md-4 offset-xxl-6" id="navbarNav">
+          <div className=" offset-xl-5 offset-md-4 offset-xxl-6" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item active header__link">
                 <Link to="/signup">

@@ -25,24 +25,28 @@ function EditProfile(props){
             <section className="edit__profile">
                 <form className="d-flex col-12 w-100 justify-content-around">
                     <div className="edit__profile--info pl-5">
-                        <div className="edit__email d-flex flex-column  mt-2">
+                        <div className="edit__email d-flex flex-column  mt-4">
                             <h4 className="">Nouvelle adresse email</h4>
                             <input type="email" placeholder="jeandupont@gmail.com" className="form-control"/>
                         </div>
-                        <div className="edit__email d-flex flex-column  mt-2">
+                        <div className="edit__email d-flex flex-column  mt-4">
                             <h4 className="">Confirmation adresse email</h4>
                             <input type="email" placeholder="jeandupont@gmail.com" className="form-control"/>
                         </div>
-                        <div className="edit__password d-flex flex-column  mt-2">
+                        <div className="edit__password d-flex flex-column  mt-4">
                             <h4 className="">Nouveau mot de passe</h4>
                             <input type="password" placeholder="8 caractères, un chiffre, une majuscule et un caractère special" className="form-control"/>
                         </div>
-                        <div className="edit__password d-flex flex-column  mt-2">
+                        <div className="edit__password d-flex flex-column  mt-4">
                             <h4 className="">Confirmation mot de passe</h4>
                             <input type="password" placeholder="8 caractères, un chiffre, une majuscule et un caractère special" className="form-control"/>
                         </div>
                     </div>
                     <div className="edit__profile--media">
+                    <div className="edit__bio d-flex flex-column mt-2">
+                                <h4 className="">Changer votre bio</h4>
+                                <textarea maxLength={184} placeholder="Présentez vous !" style={{height:'100px'}} row={4} className="form-control"/>
+                        </div>
                         <div className="edit__password d-flex flex-column mt-2">
                                 <h4 className="">Mot de passe actuel pour confirmer</h4>
                                 <input type="password" placeholder="8 caractères, un chiffre, une majuscule et un caractère special" className="form-control"/>
