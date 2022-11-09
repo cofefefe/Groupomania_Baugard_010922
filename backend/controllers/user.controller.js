@@ -1,6 +1,7 @@
 const userModels = require('../models/user.models')
 const objectId = require('mongoose').Types.ObjectId
 const { isValid } = require('validator')
+const { findOneAndDelete } = require('../models/user.models')
 
 module.exports.getAllUsers = async (req,res,next) => {
     let users = await userModels.find().select('-password')
@@ -37,3 +38,18 @@ module.exports.updateUserInfo = async (req,res,next) =>{
     }
 
 }
+
+exports.deleteUser = (req, res) => {
+    userModels.findOne({ _id: req.params.id })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ error: "Utilisateur non trouvé" });
+        }
+
+          userModels.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).send("Utilisateur supprimé"))
+            .catch((err) => res.status(400).send(err));
+
+      })
+      .catch((err) => res.status(500).send({ err }));
+  };

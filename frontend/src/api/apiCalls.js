@@ -1,4 +1,4 @@
-import { createPath } from "react-router-dom"
+import { createPath, json } from "react-router-dom"
 
 // add user 
 export function addUser(params){
@@ -13,6 +13,29 @@ export function addUser(params){
     .catch(function(err){
         console.log(err)
     })
+}
+
+// update users info
+export function updateUser(params){
+    return fetch('http://localhost:5000/api/user/:id',{
+        method:'PUT',
+        body: JSON.stringify(params),
+        headers :{ 'Content-Type' : 'application/json; charset=utf-8' },
+    })
+    .then(function(response){
+        return response.json
+    })
+    .catch(function(err){
+        console.log(err)
+    })
+}
+
+// delete users 
+export function deleteUser(params) {
+    return fetch('http://localhost:5000/api/user/delete/'+params.user.id, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json; charset=utf-8', 'Authorization': localStorage.getItem('token')},
+    });
 }
 
 // user log in
