@@ -2,6 +2,7 @@ const postModel = require('../models/post.models')
 const userModel = require('../models/user.models')
 const fs = require("fs");
 const objectId = require('mongoose').Types.objectId
+const mongoose = require('mongoose')
 
 module.exports.getPost = (req,res,next)=>{
     postModel.find((err,docs)=>{
@@ -22,7 +23,7 @@ exports.addPost = async (req,res,next)=>{
         createdAt: new Date(),
         updatedAt: new Date(),
         likes:0,
-        userLiked:[]
+        userLiked:[],
     })
     console.log('req file'+req.file)
     if (req.file != null || req.file != undefined) {
@@ -42,7 +43,6 @@ exports.addPost = async (req,res,next)=>{
 
 module.exports.modifyPost = (req,res,next)=>{
     console.log("req file", req.file)
-    console.log('modifypost')
 
     const newPost = JSON.parse(req.body.post);
 

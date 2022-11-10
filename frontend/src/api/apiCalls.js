@@ -143,7 +143,7 @@ export function addLike(params){
     let data = new FormData()
     return fetch('http://localhost:5000/api/post/'+params.post._id+'/like',{
         method:'POST',
-        header:{'Authorization':localStorage.getItem('token')}
+        headers:{'Authorization':localStorage.getItem('token')}
     })
     .then(function(res){
         return res.json()
