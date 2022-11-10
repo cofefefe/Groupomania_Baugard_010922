@@ -4,13 +4,13 @@ import { userAuth } from '../api/apiCalls';
 import ProfilePic from "../style/ressources/new.webp"
 import Nav from "./Header";
 import { UserContext } from '../Utils/userContext';
-import {useContext} from 'react'
-
+import { useState, useContext, useRef } from "react";
 
 
 
 function Profile() {
     const [user] = useContext(UserContext);
+    const [imageUrl, setImageUrl] = useState('')
     console.log(user.post)
     function userGotPost(){
         if(!user.post){
@@ -18,6 +18,15 @@ function Profile() {
         }
         return (<>{user.post}</>)
     }
+
+    const onImageChange = event => {
+        if (event.target.files && event.target.files[0]) {
+            let img = event.target.files[0];
+            setImageUrl(img);
+            console.log("img", img)
+        }
+    };
+    
 
     const date = user.createdAt
     
@@ -27,17 +36,26 @@ function Profile() {
             <main className="bg-light profile__homepage container-fluid h-100">
                 <div className="container bg-light h-100 justify-content-center d-flex">
                     <div className="profile__card row container">
-                        <img className=" profile__card--img col-sm-2 mt-2 mb-2 rounded-5 container" src={user.picture} alt="photo de profil"></img>
-                        <h2 className="col-sm-6 offset-4 align-self-center">{user.name + ' ' + user.firstname}</h2>
+                    <div className="edit__profile--picture d-flex flex-row mt-5 mn-4">
+                            <img src={user.picture} className="edit__picture rounded-circle bg-light"></img>
+                            <div className="d-flex flex-column offset-1">
+                                <p>Nouvelle photo de profil ?</p>
+                                <div className="d-flex">
+                                    <input className="form-control form-control-sm btn" id="formFileSm" style={{fontSize:"14px"}} type="file" onChange={onImageChange} />
+                                    <button className="btn btn-secondary">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 className="col-sm-6 align-self-center mt-4">{user.name + ' ' + user.firstname}</h2>
                     </div>
                 </div>
-                <div className="bio pb-5 ml-2 container">
+                <div className="bio pb-5 ml-2 container mt-4">
                     <h4 className="mt-3 col-sm-2">Bio :</h4>
                     
                     <aside className="bg-light">
                         {user.bio}
                         <div>
-                            <div className="mt-2">inscris depuis le {date}</div>
+                            <div className="mt-2">inscris depuis le {(new Date(user.createdAt)).toLocaleString()}</div>
                         </div>
                     </aside>
                 </div>

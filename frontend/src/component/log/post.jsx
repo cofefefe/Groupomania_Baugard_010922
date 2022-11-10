@@ -22,7 +22,9 @@ function Post(props, index) {
             content:props.post.content,
             posterId: user._id,
             _id:props.post._id,
-            imageUrl: props.post.imageUrl
+            imageUrl: props.post.imageUrl,
+            name: user.name,
+            firstname : user.firstname
         }}
 
     
@@ -32,7 +34,7 @@ function Post(props, index) {
 
     const likeHandler = () => {
         addLike(params).then(function(){
-            console.log('like Handler' + JSON.stringify(params))
+            refreshPost()
         })
     }
 
@@ -52,6 +54,15 @@ function Post(props, index) {
                 </div>
             )
         }
+    }
+
+    const userLikedPost = () => {
+        console.log('user id' + user._id)
+        console.log('usersLiked' + props.post.usersLiked )
+        if (props.post.usersLiked.includes(user._id)){
+            return  <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer',color:'pink'}}/></i>
+        }
+        return <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
     }
 
     // const displayImg = () => {
@@ -74,7 +85,7 @@ function Post(props, index) {
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
                             <img src={user.picture} className="rounded-5 post__picture" alt="Photo de profil"/>
-                            <p >{params.post.name + ' ' + user.firstname}</p>
+                            <p >{params.post.name + ' ' + params.post.firstname}</p>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
                             {displayActionButtons()}
                         </div>
@@ -86,7 +97,7 @@ function Post(props, index) {
                         {/* {displayImg()} */}
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
-                        <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart  className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
+                        {userLikedPost()}
                     </div>
                 </aside>
             </div>
@@ -98,7 +109,7 @@ function Post(props, index) {
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
                             <img src={user.picture} className="rounded-5 post__picture" alt="Photo de profil"/>
-                            <p >{user.name + ' ' + user.firstname}</p>
+                            <p >{params.post.name + ' ' + params.post.firstname}</p>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
                         </div>
                         <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}</p>
@@ -108,7 +119,7 @@ function Post(props, index) {
                         }
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
-                        <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
+                        {userLikedPost()}
                     </div>
                 </aside>
             </div>

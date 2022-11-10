@@ -21,14 +21,6 @@ function EditProfile(props){
     const inputPasswordValidation = useRef();
     const [bio, setBio] = useState("")
 
-    const onImageChange = event => {
-        if (event.target.files && event.target.files[0]) {
-            let img = event.target.files[0];
-            setImageUrl(img);
-            console.log("img", img)
-        }
-    };
-    
     const validateForm = () => {
         let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$/;
         let regexPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
@@ -116,13 +108,6 @@ function EditProfile(props){
                         <div className="edit__password d-flex flex-column mt-2">
                                 <h4 className="">Mot de passe actuel pour confirmer</h4>
                                 <input type="password" placeholder="8 caractères, un chiffre, une majuscule et un caractère special" className="form-control"/>
-                        </div>
-                        <div className="edit__profile--picture d-flex flex-row mt-5">
-                            <img src={user.picture} className="edit__picture rounded-circle bg-light"></img>
-                            <div className="d-flex flex-column">
-                                <p>Nouvelle photo de profil ?</p>
-                                <input className="form-control form-control-sm btn" id="formFileSm" style={{fontSize:"14px"}} type="file" onChange={onImageChange} />
-                            </div>
                         </div>
                         <div className="d-flex">
                             <button className="btn-secondary btn rounded-5 align-items-end p-3  offset-2 mt-5" onClick={onClickHandler}>Confirmer</button>
