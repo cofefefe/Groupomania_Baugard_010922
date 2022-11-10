@@ -11,7 +11,6 @@ import { useState, useContext, useRef } from "react";
 function Profile() {
     const [user] = useContext(UserContext);
     const [imageUrl, setImageUrl] = useState('')
-    console.log(user.post)
     function userGotPost(){
         if(!user.post){
             return (<p>Pas encore de publication ?</p>)
@@ -23,7 +22,6 @@ function Profile() {
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0]
             setImageUrl(img)
-            console.log("img", img)
         }
     }
 
@@ -73,12 +71,6 @@ function Profile() {
                         </div>
                     </aside>
                 </div>
-                <section className="container">
-                    <h4>Dernières publications</h4>
-                    {
-                        userGotPost()
-                    }
-                </section>
             </main>
         </>
     );

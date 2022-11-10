@@ -17,7 +17,6 @@ const UpdatePost = (props) => {
         if (contentModified === '') {
             return;
         }
-        console.log("props.post.id", props.post._id)
         const params = {
             post: {
                 _id: props.post._id,

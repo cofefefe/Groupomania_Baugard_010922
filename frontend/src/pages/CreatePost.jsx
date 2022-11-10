@@ -17,7 +17,6 @@ function CreatePost(props) {
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             setImage(img);
-            console.log("img", img)
         }
     };
 
@@ -26,7 +25,7 @@ function CreatePost(props) {
         let params = {
             post: {
                 content:content,
-                posterId: user._id,
+                poster: user._id,
                 imageUrl: image
             },
         }
@@ -41,9 +40,8 @@ function CreatePost(props) {
         <aside className="container d-flex rounded-2">
             <div className="col-2 homepage__profile d-flex mt-4">
                 <Link to="homepage/profile">
-                    <img src={user.picture} className="homepage__profile--pic" alt="portrait individuel"></img>
+                    <p>{user.firstname + ' ' + user.name}</p>
                 </Link>
-                <p>{user.firstname + ' ' + user.name}</p>
             </div>
             <div className="col-10 homepage__textarea d-flex mt-4">
                 <textarea value={content} placeholder="Quoi de neuf ?" className="rounded-2" onChange={(e) => setContent(e.target.value)}></textarea>
@@ -54,7 +52,6 @@ function CreatePost(props) {
             </div>
         </aside>    
         <div className="homepage__border col-12 container"></div>
-        <h4 className="container">Dernières publications</h4>
     </div></>)
 }
 

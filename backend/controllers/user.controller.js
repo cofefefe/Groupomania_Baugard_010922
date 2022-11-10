@@ -16,7 +16,6 @@ module.exports.getAllUsers = async (req,res,next) => {
 
 module.exports.updateUserInfo = async (req,res,next) =>{
     if(!objectId){
-        console.log(req.params.id + ' voici object id => ' + objectId)
         return res.status(400).send('Id utilisateur invalide' + req.params.id)
     }    
     try{

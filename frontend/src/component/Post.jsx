@@ -1,11 +1,12 @@
-import { UserContext } from '../../Utils/userContext';
+import { UserContext } from '../Utils/userContext';
 import { useContext } from "react";
 import { useState } from 'react';
 import { FaRegHeart, FaEdit } from 'react-icons/fa'
-import { addLike, deleteArticle, getArticles, modifyArticle } from '../../api/apiCalls';
+import { addLike, deleteArticle, getArticles, modifyArticle } from '../api/apiCalls';
 import {BsTrash} from 'react-icons/bs'
 import * as PropTypes from "prop-types";
-import UpdatePost from "../../pages/UpdatePost";
+import UpdatePost from "../pages/UpdatePost";
+import {Link} from "react-router-dom";
 
 UpdatePost.propTypes = {
     handleCancel: PropTypes.func,
@@ -17,30 +18,20 @@ function Post(props, index) {
     const [user] = useContext(UserContext);
     const [editMode, setEditMode] = useState(false);
 
-    let params = {
-        post: {
-            content:props.post.content,
-            posterId: user._id,
-            _id:props.post._id,
-            imageUrl: props.post.imageUrl,
-            name: user.name,
-            firstname : user.firstname
-        }}
+    let params = { postId: props.post.id }
 
-    
-    function refreshPost(){
-        getArticles()
-    }
 
     const likeHandler = () => {
+        let params = { postId: props.post.id }
         addLike(params).then(function(){
-            refreshPost()
+            props.onPostLiked()
         })
     }
 
-    function handlePostDelete(req, res, next){
+    function handlePostDelete(){
+        let params = { postId: props.post.id }
         deleteArticle(params).then(function(){
-            refreshPost()
+            props.onPostDeleted()
         })
     }
 
@@ -76,15 +67,16 @@ function Post(props, index) {
     }
 
 
-    if(props.post.posterId === user._id || user.isAdmin){
+    if(props.post.poster._id === user._id || user.isAdmin){
         return(
             editMode ? <UpdatePost post={props.post} onPostUpdated={onPostUpdated} handleCancel={() => setEditMode(false)} /> :
             <div className="container mt-5 ">
                 <aside className="rounded-1 container post shadow">
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
-                            <img src={user.picture} className="rounded-5 post__picture" alt="Photo de profil"/>
-                            <p >{params.post.name + ' ' + params.post.firstname}</p>
+                            <Link to="homepage/profile">
+                                <p >{props.post.poster.name + ' ' + props.post.poster.firstname}</p>
+                            </Link>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
                             {displayActionButtons()}
                         </div>
@@ -93,7 +85,6 @@ function Post(props, index) {
                             props.post.imageUrl ? <img src={props.post.imageUrl} className="post-img align-self-center mt-2 img-fluid" alt={props.post.id} style={{maxWidth:'90%', maxHeight:'400px'}} /> : <></>
                         }
                         </p>
-                        {/* {displayImg()} */}
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
                         {userLikedPost()}
@@ -107,15 +98,16 @@ function Post(props, index) {
                 <aside className="rounded-1 container post shadow">
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
-                            <img src={user.picture} className="rounded-5 post__picture" alt="Photo de profil"/>
-                            <p >{params.post.name + ' ' + params.post.firstname}</p>
+                            <Link to={"homepage/profile/"}>
+                                <p >{props.post.poster.name + ' ' + props.post.poster.firstname}</p>
+                            </Link>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
                         </div>
-                        <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}</p>
-                        {/* {displayImg()} */}
+                        <p className="post_text bg-light col-12 w-100 mt-2 p-2 rounded-1 shadow-sm">{props.post.content}
                         {
-                        props.post.imageUrl ? <img src={params.post.imageUrl} className="post-img img-fluid" alt={props.post.id} /> : <></>
+                        props.post.imageUrl ? <img src={props.post.imageUrl} className="post-img img-fluid" alt={props.post.id} /> : <></>
                         }
+                        </p>
                     </div>
                     <div className="post__react d-flex container justify-content-end ">
                         {userLikedPost()}

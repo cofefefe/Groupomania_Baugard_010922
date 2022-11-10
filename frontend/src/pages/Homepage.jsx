@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../Utils/userContext";
 import BodyMenu from "./BodyMenu";
 import {deleteArticle, getArticles} from "../api/apiCalls";
-import Post from "../component/log/post";
+import Post from "../component/Post";
 import Nav from "./Header";
 import CreatePost from "./CreatePost";
 
@@ -39,7 +39,7 @@ function Homepage() {
                 <CreatePost onPostCreated={onPostCreated} />
                 {
                     posts.map((post) => {
-                        return <Post key={post._id} post={post} onPostUpdated={refreshPosts}/>
+                        return <Post key={post._id} post={post} onPostUpdated={refreshPosts} onPostLiked={refreshPosts} onPostDeleted={refreshPosts}/>
                     })
                 }
             </>

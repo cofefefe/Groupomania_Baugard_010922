@@ -32,7 +32,6 @@ export function updateUser(params){
 
 // delete users 
 export function deleteUser(params) {
-    console.log(params)
     return fetch('http://localhost:5000/api/user/delete/'+ params.user.id, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json; charset=utf-8', 'Authorization': localStorage.getItem('token')},
@@ -94,7 +93,7 @@ export function addArticle(params){
     data.append('post', JSON.stringify(params.post))
     data.append('image', params.post.imageUrl)
     data.append('content', params.post.content)
-    data.append('posterId', params.post.posterId)
+    data.append('poster', params.post.poster._id)
     return fetch('http://localhost:5000/api/post',{
         method:'POST',
         body: data,
@@ -110,10 +109,13 @@ export function addArticle(params){
 
 // modify article
 export function modifyArticle(params){
+    
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
-    data.append('image', params.post.imageUrl)
-
+    if (params.post.imageUrl) {
+        data.append('image', params.post.imageUrl);
+    }
+    console.log(params.post)
     return fetch('http://localhost:5000/api/post/' + params.post._id,{
         method:'PUT',
         body:data,

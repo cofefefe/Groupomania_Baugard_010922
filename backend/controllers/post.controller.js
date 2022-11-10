@@ -1,17 +1,13 @@
 const postModel = require('../models/post.models')
-const userModel = require('../models/user.models')
 const fs = require("fs");
-const objectId = require('mongoose').Types.objectId
-const mongoose = require('mongoose')
 
-module.exports.getPost = (req,res,next)=>{
-    postModel.find((err,docs)=>{
-        // postModel.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        if (!err) res.send(docs)
-        else{
-            console.log('error to get data : ' + err)
-        }
-    })
+module.exports.getPost = async (req, res, next) => {
+    try {
+        const posts = await postModel.find().sort({'updatedAt': -1}).populate('poster');
+        res.send(posts)
+    } catch (e) {
+        res.status(500).json({e})
+    }
 }
 
 exports.addPost = async (req,res,next)=>{
@@ -20,7 +16,7 @@ exports.addPost = async (req,res,next)=>{
     let post = new postModel({
         ...postObject,
         content:req.body.content,
-        posterId:req.currentUser._id,
+        poster: req.currentUser._id,
         createdAt: new Date(),
         updatedAt: new Date(),
         likes:0,
@@ -28,7 +24,6 @@ exports.addPost = async (req,res,next)=>{
     })
     if (req.file != null || req.file != undefined) {
         post.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        console.log(post.imageUrl)
     }
     post.save()
         .then(()=>{
@@ -42,15 +37,15 @@ exports.addPost = async (req,res,next)=>{
 module.exports.modifyPost = (req,res,next)=>{
 
     const newPost = JSON.parse(req.body.post);
-
     let filter = {
-        _id: newPost._id,
-        posterId: req.currentUser._id
+        _id: newPost._id
     };
-    // Add the user filter only if the user is not admin
-    if (req.currentUser.isAdmin === false) {
-        filter.userId = req.currentUser.id;
+    if (!req.currentUser.isAdmin) {
+        filter._id = newPost._id
+        filter.poster = req.currentUser._id
     }
+
+    // Add the user filter only if the user is not admin
     postModel.findOne(filter).then((post) => {
         if (!post) {
             return res.status(401).json({error: 'Article non trouvé !'});
@@ -60,7 +55,7 @@ module.exports.modifyPost = (req,res,next)=>{
             // 2. supprimer l'image du serveur si elle existe
             if (post.imageUrl) {
                 const filename = post.imageUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`);
+                fs.unlink(`images/${filename}`, function () {});
             }
             try {
                 newPost.imageUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
@@ -72,9 +67,12 @@ module.exports.modifyPost = (req,res,next)=>{
         } else {
             // Pas d'image ajoutée --> On met à jour uniquement le contenu
             try {
-                postModel.updateOne({_id: newPost._id}, newPost)
-                    .then(() => res.status(200).json({message: 'Article modifié !'}));
-                return res.status(200).json({message: 'Article modifié'});
+                postModel.findOne({_id: newPost._id}).then(function (post) {
+                    post.content = newPost.content;
+                    post.save().then(function () {
+                        return res.status(200).json({message: 'Article modifié'});
+                    });
+                });
             } catch (error) {
                 return res.status(400).json({error});
             }

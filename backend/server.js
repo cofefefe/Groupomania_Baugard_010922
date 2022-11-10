@@ -13,6 +13,8 @@ app.listen(process.env.PORT, () =>{
 })
 
 require('./config/db')
+const path = require("path");
+const Users = require("./models/user.models");
 
 
 
@@ -33,4 +35,4 @@ app.use(bodyParser.urlencoded({extended:true}))
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/post',  postRoutes)
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
