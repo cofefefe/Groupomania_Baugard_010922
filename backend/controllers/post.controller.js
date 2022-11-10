@@ -3,7 +3,7 @@ const fs = require("fs");
 
 module.exports.getPost = async (req, res, next) => {
     try {
-        const posts = await postModel.find().sort({'updatedAt': -1}).populate('poster');
+        const posts = await postModel.find().sort({'createdAt': -1}).populate('poster');
         res.send(posts)
     } catch (e) {
         res.status(500).json({e})

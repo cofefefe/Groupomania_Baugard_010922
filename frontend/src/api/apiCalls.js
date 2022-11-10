@@ -109,13 +109,12 @@ export function addArticle(params){
 
 // modify article
 export function modifyArticle(params){
-    
     let data = new FormData()
     data.append('post', JSON.stringify(params.post))
     if (params.post.imageUrl) {
         data.append('image', params.post.imageUrl);
     }
-    console.log(params.post)
+
     return fetch('http://localhost:5000/api/post/' + params.post._id,{
         method:'PUT',
         body:data,
@@ -131,7 +130,7 @@ export function modifyArticle(params){
 
 // delete article
 export function deleteArticle(params){
-    return fetch('http://localhost:5000/api/post/' + params.post._id,{
+    return fetch('http://localhost:5000/api/post/' + params.postId,{
         method:'DELETE',
         headers:{'Authorization':localStorage.getItem('token')}
     })
@@ -144,8 +143,7 @@ export function deleteArticle(params){
 }
 
 export function addLike(params){
-    let data = new FormData()
-    return fetch('http://localhost:5000/api/post/'+params.post._id+'/like',{
+    return fetch('http://localhost:5000/api/post/'+params.postId+'/like',{
         method:'POST',
         headers:{'Authorization':localStorage.getItem('token')}
     })

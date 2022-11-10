@@ -18,18 +18,20 @@ function Post(props, index) {
     const [user] = useContext(UserContext);
     const [editMode, setEditMode] = useState(false);
 
-    let params = { postId: props.post.id }
-
 
     const likeHandler = () => {
-        let params = { postId: props.post.id }
+        let params = {
+            postId: props.post._id
+        }
         addLike(params).then(function(){
             props.onPostLiked()
         })
     }
 
     function handlePostDelete(){
-        let params = { postId: props.post.id }
+        let params = {
+            postId: props.post._id
+        }
         deleteArticle(params).then(function(){
             props.onPostDeleted()
         })
@@ -53,12 +55,6 @@ function Post(props, index) {
         }
         return <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer'}}/></i>
     }
-
-    // const displayImg = () => {
-    //     if(props.post.imageUrl){
-    //         return <img src={props.post.imageUrl} className="post-img img-fluid" alt={props.post.id} />
-    //     }
-    // }
 
   
     const onPostUpdated = () => {
@@ -98,7 +94,7 @@ function Post(props, index) {
                 <aside className="rounded-1 container post shadow">
                     <div className="d-flex flex-direction-row post__info col-9">
                         <div className="post__user d-flex flex-column justify-center mt-2 col-3 align-items-center ">
-                            <Link to={"homepage/profile/"}>
+                            <Link to="homepage/profile">
                                 <p >{props.post.poster.name + ' ' + props.post.poster.firstname}</p>
                             </Link>
                             <p>{(new Date(props.post.updatedAt)).toLocaleString()}</p>
