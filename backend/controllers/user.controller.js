@@ -24,7 +24,8 @@ module.exports.updateUserInfo = async (req,res,next) =>{
             {_id:req.params.id},
             {
                 $set:{
-                    email:req.body.email
+                    email:req.body.email,
+                    imageUrl: req.body.imageUrl.name
                 }
             },
             {new:true, upsert:true,setDefaultsOnInsert:true},
@@ -45,10 +46,9 @@ exports.deleteUser = (req, res) => {
         if (!user) {
           return res.status(404).json({ error: "Utilisateur non trouvé" });
         }
-          userModels.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).send("Utilisateur supprimé"))
-            .catch((err) => res.status(400).send(err));
-
+                userModels.deleteOne({ _id: req.params.id })
+                .then(() => res.status(200).send("Utilisateur supprimé"))
+                .catch((err) => res.status(400).send(err));
       })
       .catch((err) => res.status(500).send({ err }));
   };

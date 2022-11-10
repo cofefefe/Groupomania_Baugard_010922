@@ -177,6 +177,7 @@ main{
         height:140px;
       }
     }
+    
   }
   nav{
     display:flex;
@@ -188,7 +189,11 @@ main{
     }
   }
 }
-
+@media (max-width: 600px) {
+  .main__cards{
+    margin-top:250px;
+  }
+}
 // homepage 
 
 .homepage{

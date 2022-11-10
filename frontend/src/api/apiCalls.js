@@ -17,7 +17,7 @@ export function addUser(params){
 
 // update users info
 export function updateUser(params){
-    return fetch('http://localhost:5000/api/user/:id',{
+    return fetch('http://localhost:5000/api/user/' + params.user.id,{
         method:'PUT',
         body: JSON.stringify(params),
         headers :{ 'Content-Type' : 'application/json; charset=utf-8' },
@@ -32,7 +32,8 @@ export function updateUser(params){
 
 // delete users 
 export function deleteUser(params) {
-    return fetch('http://localhost:5000/api/user/delete/'+params.user.id, {
+    console.log(params)
+    return fetch('http://localhost:5000/api/user/delete/'+ params.user.id, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json; charset=utf-8', 'Authorization': localStorage.getItem('token')},
     });
@@ -73,7 +74,8 @@ export async function userAuth() {
 }
 
 // retrieve articles
-export function getArticles(){
+export function getArticles(params){
+
     return fetch('http://localhost:5000/api/post',{
         method:'GET',
         headers:{ 'Content-Type': 'application/json; charset=utf-8; image/pgn; image/jpg', 'Authorization': localStorage.getItem('token')}

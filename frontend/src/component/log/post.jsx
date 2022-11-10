@@ -57,8 +57,6 @@ function Post(props, index) {
     }
 
     const userLikedPost = () => {
-        console.log('user id' + user._id)
-        console.log('usersLiked' + props.post.usersLiked )
         if (props.post.usersLiked.includes(user._id)){
             return  <i className="post__react--like pb-2">{props.post.likes}<FaRegHeart className="m-1" onClick={likeHandler} style={{width:30,height:30,cursor:'pointer',color:'pink'}}/></i>
         }
@@ -70,6 +68,7 @@ function Post(props, index) {
     //         return <img src={props.post.imageUrl} className="post-img img-fluid" alt={props.post.id} />
     //     }
     // }
+
   
     const onPostUpdated = () => {
         setEditMode(false);

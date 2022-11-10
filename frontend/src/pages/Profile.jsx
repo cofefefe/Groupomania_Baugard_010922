@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import { userAuth } from '../api/apiCalls';
+import { updateUser, userAuth } from '../api/apiCalls';
 import ProfilePic from "../style/ressources/new.webp"
 import Nav from "./Header";
 import { UserContext } from '../Utils/userContext';
@@ -21,11 +21,25 @@ function Profile() {
 
     const onImageChange = event => {
         if (event.target.files && event.target.files[0]) {
-            let img = event.target.files[0];
-            setImageUrl(img);
+            let img = event.target.files[0]
+            setImageUrl(img)
             console.log("img", img)
         }
-    };
+    }
+
+    const addImg = (req,res,next) => {
+        let params = {
+            user : {
+                imageUrl : imageUrl.name,
+                id: user._id
+            }
+        }
+        updateUser(params).then(function () {
+            console.log('updating user pic')
+        })
+    } 
+
+
     
 
     const date = user.createdAt
@@ -42,7 +56,7 @@ function Profile() {
                                 <p>Nouvelle photo de profil ?</p>
                                 <div className="d-flex">
                                     <input className="form-control form-control-sm btn" id="formFileSm" style={{fontSize:"14px"}} type="file" onChange={onImageChange} />
-                                    <button className="btn btn-secondary">Valider</button>
+                                    <button className="btn btn-secondary"  onClick={addImg} >Valider</button>
                                 </div>
                             </div>
                         </div>

@@ -7,12 +7,11 @@ const userToken = require('../middleware/auth');
 
 exports.likePost = (req, response) => {
 
- const token = req.headers.authorization
+  // retrieve userId by token
+  const token = req.headers.authorization
   const decodedToken = jwt.verify(token, process.env.TOKEN);
   const userId = decodedToken.userId;
   const messageId = req.params.id;
-
-
   // Retrieve post in the data base
   Post.findOne({ _id: messageId })
     .then((res) => {

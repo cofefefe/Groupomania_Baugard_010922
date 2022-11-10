@@ -25,6 +25,7 @@ function EditProfile(props){
         let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$/;
         let regexPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
 
+
         if (regexEmail.test(email) === false || regexPassword.test(password) === false) {
 
             return false;
@@ -64,6 +65,18 @@ function EditProfile(props){
             navigate('/homepage');
         })
     };
+
+    const onClickDelete = () => {
+        let params = {
+            user: {
+                id:user._id
+            }}
+        console.log('ON CLICK DELETE EXECUTED')
+        deleteUser(params).then(function(){
+            navigate('/')
+            window.location.reload()
+        })
+    }
 
     return(
         <>
@@ -111,7 +124,10 @@ function EditProfile(props){
                         </div>
                         <div className="d-flex">
                             <button className="btn-secondary btn rounded-5 align-items-end p-3  offset-2 mt-5" onClick={onClickHandler}>Confirmer</button>
-                            <button className="btn-secondary btn btn-danger rounded-5 align-items-end offset-1 p-3 mt-5" onClick={deleteUser}>Supprimer compte</button>
+                            <button className="btn-secondary btn btn-danger rounded-5 align-items-end offset-1 p-3 mt-5" onClick={(e)=>{
+                                e.preventDefault()
+                                onClickDelete()
+                            }} >Supprimer compte</button>
                         </div>
                     </div>
                 </form>

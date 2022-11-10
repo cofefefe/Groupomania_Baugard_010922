@@ -11956,6 +11956,11 @@ main .bio {
     margin-bottom: 10px;
   }
 }
+@media (max-width: 600px) {
+  .main__cards {
+    margin-top: 250px;
+  }
+}
 .homepage {
   background-color: #4E5166;
 }
@@ -12052,6 +12057,11 @@ main .bio {
   height: 80px;
 }
 
+@media (max-width: 997px) {
+  .edit form {
+    flex-direction: column;
+  }
+}
 .header nav {
   width: 100%;
   justify-content: space-between;

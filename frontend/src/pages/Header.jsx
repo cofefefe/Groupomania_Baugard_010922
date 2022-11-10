@@ -15,10 +15,6 @@ function Header() {
   }
 
 
-
-  
- 
-
   if(!user){
 
     return (
@@ -47,7 +43,7 @@ function Header() {
   )}else{
     return(
     <header className="header d-flex col-12 container">
-        <nav className="d-flex">
+        <nav className="d-flex align-items-center">
           <Link to="/">
           <img src={logo} className="header__logo" alt="logo Groupomania"/>
           </Link>
