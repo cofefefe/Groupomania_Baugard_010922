@@ -18,6 +18,6 @@ Backend :
 - If you are connected to your db, you'll see a log ' connected to mongoDB '
  
 - Create the admin user : Run the command : 
-  - run  `./node_modules/.bin/migrate up admin-user -d mongodb+srv://Luubin:Trinite333762@cluster0.lvtppdv.mongodb.net/Groupomania_project`
+  - run  `./node_modules/.bin/migrate up admin-user -d mongodb+srv://[IDMONGODB]:[PasswordMongoDB]@cluster0.lvtppdv.mongodb.net/Groupomania_project`
   - id : admin@groupomania.fr
   - Password : Admin12345-
